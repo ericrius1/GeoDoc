@@ -3,7 +3,7 @@ var Main = function() {
 	var xhr;
 
 	xhr = new XMLHttpRequest();
-	xhr.open('GET', '/assets/locationData.json', true);
+	xhr.open('GET', '/geodoc/assets/locationData.json', true);
 	xhr.onreadystatechange = function(e) {
 		if (xhr.readyState === 4) {
 			if (xhr.status === 200) {
