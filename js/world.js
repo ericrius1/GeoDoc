@@ -26,7 +26,11 @@ var World = function(locationData) {
 		var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 10000);
 		camera.position.z = 2;
 
-		controls = new THREE.TrackballControls(camera);
+		controls = new THREE.OrbitControls(camera);
+		controls.autoRotate = true;
+		controls.autoRotateSpeed = -0.9;
+		
+
 		setUpLights(scene);
 
 
@@ -83,7 +87,7 @@ var World = function(locationData) {
 		earthCloud.castShadow = true
 		containerEarth.add(earthCloud)
 		onRenderFcts.push(function(delta, now) {
-			earthCloud.rotation.y += 1 / 8 * delta;
+			earthCloud.rotation.y += 1 / 32 * delta;
 		})
 
 
