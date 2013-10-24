@@ -7,7 +7,7 @@ var Emitter = function(lat, lon, numUsers, locationsGroup) {
   var lon = lon;
   var numUsers = 1000;
 
-  var velMultiplier = Math.random() * 1000 /1000;
+  var velMultiplier = (Math.random() * 1000 )/1000;
 
   var surfFactor = 0.5;
 

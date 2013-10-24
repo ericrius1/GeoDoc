@@ -23,7 +23,7 @@ THREEx.Planets.createMercury	= function(){
 	var material	= new THREE.MeshPhongMaterial({
 		map	: THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL+'images/mercurymap.jpg'),
 		bumpMap	: THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL+'images/mercurybump.jpg'),
-		bumpScale: 0.005,
+		bumpScale: 0.001,
 	})
 	var mesh	= new THREE.Mesh(geometry, material)
 	return mesh	
