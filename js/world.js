@@ -1,6 +1,11 @@
 var World = function(locationData) {
 	var scene;
-	var locationData
+	var locationData;
+
+	var lon = 0,
+		lat = 0,
+		phi = 0,
+		theta = 0;
 	var init = function() {
 		locationData = locationData;
 
@@ -52,9 +57,6 @@ var World = function(locationData) {
 		earthMesh.receiveShadow = true
 		earthMesh.castShadow = true
 		containerEarth.add(earthMesh)
-		onRenderFcts.push(function(delta, now) {
-			earthMesh.rotation.y += 1 / 16 * delta;
-		})
 
 		var geometry = new THREE.SphereGeometry(0.5, 32, 32)
 		var material = THREEx.createAtmosphereMaterial()
@@ -101,6 +103,8 @@ var World = function(locationData) {
 		requestAnimationFrame(function animate(nowMsec) {
 			// keep looping
 			requestAnimationFrame(animate);
+
+
 
 			controls.update();
 			// measure time
@@ -161,10 +165,10 @@ var World = function(locationData) {
 			light2.shadowMapHeight = 1024
 		}
 
-		var setUpEmitters = function() {
-			emitters = new Emitters(scene);
-			emitters.init(locationData);
-		}
+	var setUpEmitters = function() {
+		emitters = new Emitters(scene);
+		emitters.init(locationData);
+	}
 
 	this.init = init;
 	this.setUpEmitters = setUpEmitters;
