@@ -126,6 +126,8 @@ var World = function() {
 		requestAnimationFrame(function animate(nowMsec) {
 			// keep looping
 			requestAnimationFrame(animate);
+
+			controls.update();
 			// measure time
 			lastTimeMsec = lastTimeMsec || nowMsec - 1000 / 60
 			var deltaMsec = Math.min(200, nowMsec - lastTimeMsec)
