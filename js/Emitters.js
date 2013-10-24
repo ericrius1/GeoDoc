@@ -1,8 +1,8 @@
 var Emitters = function(){
 
-	function init(){
+	function init(locations){
 
-		
+
 	}
 
 }

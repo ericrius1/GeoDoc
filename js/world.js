@@ -1,6 +1,6 @@
 var World = function() {
 
-	var init = function() {
+	var init = function(locationData) {
 
 		var emitter;
 		var dt = 0.016;
