@@ -2,7 +2,7 @@ var Emitter = function(lat, lon, numUsers, locationsGroup) {
 
 
   var emitter;
-  var particlesPerSecond = 80;
+  var particlesPerSecond = 20;
   var lat = lat;
   var lon = lon;
   var numUsers = 1000;
@@ -40,8 +40,8 @@ var Emitter = function(lat, lon, numUsers, locationsGroup) {
 
       colorStart: new THREE.Color('white'),
       colorEnd: new THREE.Color('blue'),
-      size: .4,
-      sizeEnd: .2,
+      size: .3,
+      sizeEnd: .1,
 
       opacityStart: 1,
       opacityEnd: 0,
