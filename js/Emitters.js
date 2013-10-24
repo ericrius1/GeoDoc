@@ -3,14 +3,25 @@ var Emitters = function(scene) {
 	var emitters = [];
 	var locationData;
 
+	var locationsGroup;
+
+	var maxAge = 2;
+
 	var init = function(locationData) {
+
+		locationsGroup = new ShaderParticleGroup({
+			texture: THREE.ImageUtils.loadTexture('../assets/smokeparticle.png'),
+			maxAge: maxAge
+		});
 		locationData = locationData;
-		for (var i = 0; i < locationData.length/100; i += 2) {
-			var emitter = new Emitter(scene, locationData[i], locationData[i+1], locationData[i+2])
+		for (var i = 0; i < locationData.length / 100; i += 2) {
+			var emitter = new Emitter(locationData[i], locationData[i + 1], locationData[i + 2], locationsGroup)
 			emitters.push(emitter);
 			emitter.init();
 
 		}
+
+		scene.add(locationsGroup.mesh);
 
 	}
 

@@ -1,27 +1,23 @@
-var Emitter = function(scene, lat, lon, numUsers) {
+var Emitter = function(lat, lon, numUsers, locationsGroup) {
 
 
-  var scene = scene;
-  var cityGroup;
   var emitter;
   var maxAge = 2;
-  var particlesPerSecond = 500;
+  var particlesPerSecond = 100;
   var lat = lat;
   var lon = lon;
   var numUsers = numUsers;
 
-  var cityGroup;
 
   var xPos, yPos, zPos;
+
+  var locationsGroup = locationsGroup;
 
   // Create particle group and rootEmitter
 
   var init = function() {
 
-    cityGroup = new ShaderParticleGroup({
-      texture: THREE.ImageUtils.loadTexture('../assets/smokeparticle.png'),
-      maxAge: maxAge
-    });
+  
 
 
     var phi = (90 - lat) * Math.PI / 180;
@@ -49,13 +45,13 @@ var Emitter = function(scene, lat, lon, numUsers) {
       particlesPerSecond: particlesPerSecond
     });
 
-    cityGroup.addEmitter(emitter);
-    scene.add(cityGroup.mesh);
+    locationsGroup.addEmitter(emitter);
+
 
   }
 
   var tick = function(dt) {
-    cityGroup.tick(dt);
+    locationsGroup.tick(dt);
   }
   this.init = init;
   this.tick = tick;
