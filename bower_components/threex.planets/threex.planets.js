@@ -2,7 +2,7 @@ var THREEx = THREEx || {}
 
 THREEx.Planets	= {}
 
-THREEx.Planets.baseURL	= '../bower_components/threex.planets/'
+THREEx.Planets.baseURL	= '/bower_components/threex.planets/'
 
 // from http://planetpixelemporium.com/
 

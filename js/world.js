@@ -31,7 +31,7 @@ var World = function(locationData) {
 
 		var geometry = new THREE.SphereGeometry(90, 32, 32)
 		var material = new THREE.MeshBasicMaterial({
-			map: THREE.ImageUtils.loadTexture('/../bower_components/threex.planets/examples/images/galaxy_starfield.png'),
+			map: THREE.ImageUtils.loadTexture('bower_components/threex.planets/examples/images/galaxy_starfield.png'),
 			side: THREE.BackSide
 		})
 		var starSphere = new THREE.Mesh(geometry, material)
