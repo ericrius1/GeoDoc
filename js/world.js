@@ -3,6 +3,8 @@ var World = function() {
 	var init = function(locationData) {
 		var locationData = locationData;
 
+		var controls;
+
 		var emitter;
 		var dt = 0.016;
 
@@ -17,6 +19,8 @@ var World = function() {
 		var scene = new THREE.Scene();
 		var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 10000);
 		camera.position.z = 2;
+
+		controls = new THREE.TrackballControls(camera);
 
 		var light = new THREE.AmbientLight(0x222222)
 		scene.add(light)
@@ -101,22 +105,7 @@ var World = function() {
 			earthCloud.rotation.y += 1 / 8 * delta;
 		})
 
-		//////////////////////////////////////////////////////////////////////////////////
-		//		Camera Controls							//
-		//////////////////////////////////////////////////////////////////////////////////
-		var mouse = {
-			x: 0,
-			y: 0
-		}
-		document.addEventListener('mousemove', function(event) {
-			mouse.x = (event.clientX / window.innerWidth) - 0.5
-			mouse.y = (event.clientY / window.innerHeight) - 0.5
-		}, false)
-		onRenderFcts.push(function(delta, now) {
-			camera.position.x += (mouse.x * 5 - camera.position.x) * (delta * 3)
-			camera.position.y += (mouse.y * 5 - camera.position.y) * (delta * 3)
-			camera.lookAt(scene.position)
-		})
+		
 
 		//****EMITTER
 		emitters = new Emitters(scene);

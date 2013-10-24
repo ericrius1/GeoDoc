@@ -2,7 +2,7 @@ var Emitter = function(lat, lon, numUsers, locationsGroup) {
 
 
   var emitter;
-  var particlesPerSecond = 10;
+  var particlesPerSecond = 40;
   var lat = lat;
   var lon = lon;
   var numUsers = numUsers;
