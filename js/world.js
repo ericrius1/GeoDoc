@@ -12,8 +12,8 @@ var World = function() {
 
 	var onRenderFcts = [];
 	var scene = new THREE.Scene();
-	var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 10000);
-	camera.position.z = 1;
+	var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 10000);
+	camera.position.z = 2;
 
 	var light = new THREE.AmbientLight(0x222222)
 	scene.add(light)

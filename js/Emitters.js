@@ -3,16 +3,9 @@ var Emitters = function(scene) {
 
   var scene = scene;
   var cityGroup;
-  var rootEmitter;
+  var emitter;
+  var maxAge = 2;
 
-  var increment = 2;
-  var radius = .3;
-  var size = 10;
-  var maxAge = 4;
-  var pps = 2000;
-  var opacityStart = 0.05;
-  var opacityMiddle = 0.1;
-  var opacityEnd = 0.05;
   var cityGroup;
 
   // Create particle group and rootEmitter
@@ -27,29 +20,24 @@ var Emitters = function(scene) {
 
 
 
-    //****ROOOOT******
-    rootEmitter = new ShaderParticleEmitter({
-      type: 'sphere',
-      position: new THREE.Vector3(0,0, 0),
+    emitter = new ShaderParticleEmitter({
+      position: new THREE.Vector3(0, 0, 0),
 
-      radius: radius,
-      speed: 2,
+      acceleration: new THREE.Vector3(0, 1, 0),
+      accelerationSpread: new THREE.Vector3(.1, 0, .1),
 
-      colorStart: new THREE.Color('red'),
-      colorSpread: new THREE.Vector3(0, 0.5, 0),
-      colorEnd: new THREE.Color('red'),
-      size: 1,
-      sizeEnd: 0,
+      velocity: new THREE.Vector3(0, 1, 0),
+      velocitySpread: new THREE.Vector3(.1, 0.075, .1),
 
-      opacityStart: opacityStart,
-      opacityMiddle: opacityMiddle,
-      opacityEnd: opacityEnd,
+      colorStart: new THREE.Color('white'),
+      colorEnd: new THREE.Color('blue'),
+      size: .1,
+      sizeEnd: .2,
 
-      particlesPerSecond: pps
+      particlesPerSecond: 1000
     });
 
-
-    cityGroup.addEmitter(rootEmitter);
+    cityGroup.addEmitter(emitter);
     scene.add(cityGroup.mesh);
 
   }
