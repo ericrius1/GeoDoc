@@ -10,7 +10,7 @@ var Emitters = function(scene) {
 	var init = function(locationData) {
 
 		locationsGroup = new ShaderParticleGroup({
-			texture: THREE.ImageUtils.loadTexture('/assets/smokeparticle.png'),
+			texture: THREE.ImageUtils.loadTexture('assets/smokeparticle.png'),
 			maxAge: maxAge
 		});
 		locationData = locationData;
