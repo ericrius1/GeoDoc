@@ -1,6 +1,7 @@
 var World = function() {
 
 	var init = function(locationData) {
+		var locationData = locationData;
 
 		var emitter;
 		var dt = 0.016;
@@ -118,8 +119,8 @@ var World = function() {
 		})
 
 		//****EMITTER
-		emitters = new Emitters(locationData, scene);
-		emitters.init();
+		emitters = new Emitters(scene);
+		emitters.init(locationData);
 
 		//////////////////////////////////////////////////////////////////////////////////
 		//		render the scene						//

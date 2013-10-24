@@ -1,10 +1,10 @@
-var Emitters = function(locationData, scene){
-
+var Emitters = function(scene){
 	var scene = scene;
-	var locationData = locationData;
 	var emitters = [];
+	var locationData;
 
-	var init = function(){
+	var init = function(locationData){
+	    locationData = locationData;
 		emitters.push(new Emitter(scene));
 		emitters[emitters.length-1].init()
 
