@@ -23,7 +23,7 @@ THREEx.Planets.createMercury	= function(){
 	var material	= new THREE.MeshPhongMaterial({
 		map	: THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL+'images/mercurymap.jpg'),
 		bumpMap	: THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL+'images/mercurybump.jpg'),
-		bumpScale: 0.001,
+		bumpScale: 0.1,
 	})
 	var mesh	= new THREE.Mesh(geometry, material)
 	return mesh	
@@ -45,7 +45,7 @@ THREEx.Planets.createEarth	= function(){
 	var material	= new THREE.MeshPhongMaterial({
 		map		: THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL+'images/earthmap1k.jpg'),
 		bumpMap		: THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL+'images/earthbump1k.jpg'),
-		bumpScale	: 0.11,
+		bumpScale	: 0.03,
 		specularMap	: THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL+'images/earthspec1k.jpg'),
 		specular	: new THREE.Color('grey'),
 	})

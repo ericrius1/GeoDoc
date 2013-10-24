@@ -53,7 +53,7 @@ var World = function(locationData) {
 		earthMesh.castShadow = true
 		containerEarth.add(earthMesh)
 		onRenderFcts.push(function(delta, now) {
-			earthMesh.rotation.y += 1 / 32 * delta;
+			earthMesh.rotation.y += 1 / 16 * delta;
 		})
 
 		var geometry = new THREE.SphereGeometry(0.5, 32, 32)
