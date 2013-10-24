@@ -1,4 +1,4 @@
-var Emitter = function(scene) {
+var Emitter = function(scene, lat, lon, numUsers) {
 
 
   var scene = scene;
@@ -6,13 +6,17 @@ var Emitter = function(scene) {
   var emitter;
   var maxAge = 2;
   var particlesPerSecond = 500;
+  var lat = lat;
+  var lon = lon;
+  var numUsers = numUsers;
 
   var cityGroup;
+
+  var xPos, yPos, zPos;
 
   // Create particle group and rootEmitter
 
   var init = function() {
-    console.log('init')
 
     cityGroup = new ShaderParticleGroup({
       texture: THREE.ImageUtils.loadTexture('../assets/smokeparticle.png'),
@@ -20,14 +24,21 @@ var Emitter = function(scene) {
     });
 
 
+    var phi = (90 - lat) * Math.PI / 180;
+    var theta = (180 - lon) * Math.PI / 180;
+
+    xPos =  Math.sin(phi) * Math.cos(theta);
+    yPos =  Math.cos(phi);
+    zPos =  Math.sin(phi) * Math.sin(theta);
+
 
     emitter = new ShaderParticleEmitter({
-      position: new THREE.Vector3(0, 0, 0),
+      position: new THREE.Vector3(xPos/10, yPos/10, zPos/10),
 
-      acceleration: new THREE.Vector3(0, 1, 0),
+      acceleration: new THREE.Vector3(0, 0, 0),
       accelerationSpread: new THREE.Vector3(.05, 0.01, .05),
 
-      velocity: new THREE.Vector3(0, 1, 0),
+      velocity: new THREE.Vector3(xPos, yPos, zPos),
       velocitySpread: new THREE.Vector3(.01, 0.075, .01),
 
       colorStart: new THREE.Color('white'),
