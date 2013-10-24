@@ -40,8 +40,8 @@ var Emitter = function(lat, lon, numUsers, locationsGroup) {
 
       colorStart: new THREE.Color('white'),
       colorEnd: new THREE.Color('blue'),
-      size: .3,
-      sizeEnd: .1,
+      size: .2,
+      sizeEnd: .01,
 
       opacityStart: 1,
       opacityEnd: 0,
