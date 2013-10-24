@@ -1,0 +1,15 @@
+{
+  "name": "GeoDock",
+  "preferGlobal": true,
+  "version": "0.3.0",
+  "author": "Eric Levin",
+  "description": "GeoDock",
+
+  "dependencies" : {
+    "bower"   :  "latest"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.6"
+  }
+}
