@@ -1,5 +1,8 @@
 var World = function() {
 
+	var emitters;
+	var dt = 0.016;
+
 	var renderer = new THREE.WebGLRenderer({
 		antialias: true
 	});
@@ -9,7 +12,7 @@ var World = function() {
 
 	var onRenderFcts = [];
 	var scene = new THREE.Scene();
-	var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 100);
+	var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 10000);
 	camera.position.z = 1;
 
 	var light = new THREE.AmbientLight(0x222222)
@@ -57,12 +60,6 @@ var World = function() {
 	containerEarth.rotateZ(-23.4 * Math.PI / 180)
 	containerEarth.position.z = 0
 	scene.add(containerEarth)
-	var moonMesh = THREEx.Planets.createMoon()
-	moonMesh.position.set(0.5, 0.5, 0.5)
-	moonMesh.scale.multiplyScalar(1 / 5)
-	moonMesh.receiveShadow = true
-	moonMesh.castShadow = true
-	containerEarth.add(moonMesh)
 
 	var earthMesh = THREEx.Planets.createEarth()
 	earthMesh.receiveShadow = true
@@ -118,12 +115,16 @@ var World = function() {
 		camera.lookAt(scene.position)
 	})
 
+	//****EMITTERS
+	emitters  = new Emitters(scene, 50, 10);
+	emitters.init();
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the scene						//
 	//////////////////////////////////////////////////////////////////////////////////
 	onRenderFcts.push(function() {
 		renderer.render(scene, camera);
+		emitters.tick(dt);
 	})
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -142,4 +143,7 @@ var World = function() {
 			onRenderFct(deltaMsec / 1000, nowMsec / 1000)
 		})
 	})
+
+
+
 }
