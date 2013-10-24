@@ -1,7 +1,8 @@
-var World = function() {
-
-	var init = function(locationData) {
-		var locationData = locationData;
+var World = function(locationData) {
+	var scene;
+	var locationData
+	var init = function() {
+		locationData = locationData;
 
 		var controls;
 
@@ -16,34 +17,13 @@ var World = function() {
 		renderer.shadowMapEnabled = true
 
 		var onRenderFcts = [];
-		var scene = new THREE.Scene();
+		scene = new THREE.Scene();
 		var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 10000);
 		camera.position.z = 2;
 
 		controls = new THREE.TrackballControls(camera);
+		setUpLights(scene);
 
-		var light = new THREE.AmbientLight(0x222222)
-		scene.add(light)
-
-		var light = new THREE.DirectionalLight(0xffffff, 1)
-		light.position.set(5, 5, 5)
-		scene.add(light)
-		light.castShadow = true
-		light.shadowCameraNear = 0.01
-		light.shadowCameraFar = 15
-		light.shadowCameraFov = 45
-
-		light.shadowCameraLeft = -1
-		light.shadowCameraRight = 1
-		light.shadowCameraTop = 1
-		light.shadowCameraBottom = -1
-		// light.shadowCameraVisible	= true
-
-		light.shadowBias = 0.001
-		light.shadowDarkness = 0.2
-
-		light.shadowMapWidth = 1024
-		light.shadowMapHeight = 1024
 
 		//////////////////////////////////////////////////////////////////////////////////
 		//		added starfield							//
@@ -95,7 +75,6 @@ var World = function() {
 		var mesh = new THREE.Mesh(geometry, material);
 		mesh.scale.multiplyScalar(1.15);
 		containerEarth.add(mesh);
-		// new THREEx.addAtmosphereMaterial2DatGui(material, datGUI)
 
 		var earthCloud = THREEx.Planets.createEarthCloud()
 		earthCloud.receiveShadow = true
@@ -105,11 +84,7 @@ var World = function() {
 			earthCloud.rotation.y += 1 / 8 * delta;
 		})
 
-		
 
-		//****EMITTER
-		emitters = new Emitters(scene);
-		emitters.init(locationData);
 
 		//////////////////////////////////////////////////////////////////////////////////
 		//		render the scene						//
@@ -140,6 +115,58 @@ var World = function() {
 
 	}
 
+		function setUpLights(scene) {
+
+
+			var light = new THREE.DirectionalLight(0xffffff, 1)
+			light.position.set(10, 10, 10)
+			scene.add(light)
+			light.intensity = 1.5;
+			light.castShadow = true
+			light.shadowCameraNear = 0.01
+			light.shadowCameraFar = 15
+			light.shadowCameraFov = 45
+
+			light.shadowCameraLeft = -1
+			light.shadowCameraRight = 1
+			light.shadowCameraTop = 1
+			light.shadowCameraBottom = -1
+			// light.shadowCameraVisible	= true
+
+			light.shadowBias = 0.001
+			light.shadowDarkness = 0.2
+
+			light.shadowMapWidth = 1024
+			light.shadowMapHeight = 1024
+
+			var light2 = new THREE.DirectionalLight(0xffffff, 1)
+			light2.position.set(-10, -10, -10)
+			scene.add(light2)
+			light2.intensity = 1.5;
+			light2.castShadow = true
+			light2.shadowCameraNear = 0.01
+			light2.shadowCameraFar = 15
+			light2.shadowCameraFov = 45
+
+			light2.shadowCameraLeft = -1
+			light2.shadowCameraRight = 1
+			light2.shadowCameraTop = 1
+			light2.shadowCameraBottom = -1
+			// light2.shadowCameraVisible	= true
+
+			light2.shadowBias = 0.001
+			light2.shadowDarkness = 0.2
+
+			light2.shadowMapWidth = 1024
+			light2.shadowMapHeight = 1024
+		}
+
+		var setUpEmitters = function() {
+			emitters = new Emitters(scene);
+			emitters.init(locationData);
+		}
+
 	this.init = init;
+	this.setUpEmitters = setUpEmitters;
 
 }

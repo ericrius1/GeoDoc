@@ -2,17 +2,20 @@ var Emitter = function(lat, lon, numUsers, locationsGroup) {
 
 
   var emitter;
-  var particlesPerSecond = 40;
+  var particlesPerSecond = numUsers;
   var lat = lat;
   var lon = lon;
-  var numUsers = numUsers;
+  var numUsers = 1000;
 
-  var velFactor = 3;
+  var velMultiplier = numUsers/1000;
 
+  var surfFactor = 0.5;
 
   var xPos, yPos, zPos;
 
   var locationsGroup = locationsGroup;
+
+  var rand = Math.random;
 
   // Create particle group and rootEmitter
 
@@ -26,15 +29,18 @@ var Emitter = function(lat, lon, numUsers, locationsGroup) {
     zPos =  Math.sin(phi) * Math.sin(theta);
 
     emitter = new ShaderParticleEmitter({
-      position: new THREE.Vector3(xPos * 0.1, yPos * 0.1, zPos * 0.1),
+      position: new THREE.Vector3(xPos * surfFactor, yPos * surfFactor, zPos * surfFactor),
 
 
-      velocity: new THREE.Vector3(xPos/velFactor, yPos/velFactor, zPos/velFactor),
-      velocitySpread: new THREE.Vector3(.01, 0.01, .01),
+      velocity: new THREE.Vector3(xPos * velMultiplier, yPos * velMultiplier, zPos * velMultiplier),
+      velocitySpread: new THREE.Vector3(.1, 0.1, .1),
+
+      accelertion: new THREE.Vector3(1,1,1),
+
 
       colorStart: new THREE.Color('white'),
       colorEnd: new THREE.Color('blue'),
-      size: .1,
+      size: .4,
       sizeEnd: .2,
 
       particlesPerSecond: particlesPerSecond

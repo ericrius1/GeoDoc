@@ -9,8 +9,9 @@ var Main = function() {
 			if (xhr.status === 200) {
 				var data = JSON.parse(xhr.responseText);
 				locationData = data;
-				var world = new World();
-				world.init(locationData);
+				var world = new World(locationData);
+				world.init();
+				world.setUpEmitters();
 			}
 		}
 	};

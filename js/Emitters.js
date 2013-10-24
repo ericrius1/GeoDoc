@@ -14,7 +14,7 @@ var Emitters = function(scene) {
 			maxAge: maxAge
 		});
 		locationData = locationData;
-		for (var i = 0; i < locationData.length / 100; i += 2) {
+		for (var i = 0; i < locationData.length/100; i += 2) {
 			var emitter = new Emitter(locationData[i], locationData[i + 1], locationData[i + 2], locationsGroup)
 			emitters.push(emitter);
 			emitter.init();
