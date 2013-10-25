@@ -18,7 +18,8 @@ var Emitters = function(scene) {
 			maxAge: maxAge
 		});
 		locationData = locationData;
-		for (var i = 0; i < locationData.length; i += 2) {
+		for (var i = 0; i < locationData.length; i += 3) {
+			console.log('wah')
 			var emitter = new Emitter(locationData[i], locationData[i + 1], randomRange(minUsers, maxUsers), locationsGroup, minUsers, maxUsers)
 			emitters.push(emitter);
 			emitter.init();
