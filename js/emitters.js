@@ -8,7 +8,7 @@ var Emitters = function(scene) {
 	var count = 0;
 
 	var minUsers = 1;
-	var maxUsers = 1000;
+	var maxUsers = 2000;
 
 
 	var locationGroups = [];
@@ -34,7 +34,7 @@ var Emitters = function(scene) {
 		for(var i = 0; i < emitters.length; i++){
 			var emitter = emitters[i];
 			var numUsers = emitter.numUsers;
-			var newNumUsers  = randomRange(Math.max( minUsers, numUsers - 100), Math.min(numUsers + 100, maxUsers));
+			var newNumUsers  = randomRange(Math.max( minUsers, numUsers - 500), Math.min(numUsers + 500, maxUsers));
 			if(i ===1)console.log('new users', newNumUsers);
 			emitter.update(newNumUsers)
 		}
@@ -47,13 +47,7 @@ var Emitters = function(scene) {
 		for(var i = 0; i < locationGroups.length; i++){
 			locationGroups[i].tick(dt);
 		}
-		// count++;
-		// if (count % 100 === 0) {
-		// 	for (var i = 0; i < emitters.length; i++) {
-		// 		emitters[i].update(randomRange(minUsers, maxUsers));
-		// 	}
 
-		// }
 	}
 
 	this.tick = tick;

@@ -20,10 +20,8 @@ var Emitter = function(lat, lon, numUsers, locationsGroup, minUsers, maxUsers) {
   var yPos = Math.cos(phi);
   var zPos = Math.sin(phi) * Math.sin(theta);
 
-  var velMultiplier = map(numUsers, minUsers, maxUsers, 1, 10) * .05;
-  velocity.x = xPos * velMultiplier;
-  velocity.y = yPos * velMultiplier;
-  velocity.z = zPos * velMultiplier;
+  var velMultiplier;
+  var velMultFactor = 20;
 
 
   var surfFactor = 0.5;
@@ -44,7 +42,6 @@ var Emitter = function(lat, lon, numUsers, locationsGroup, minUsers, maxUsers) {
     emitter = new ShaderParticleEmitter({
       position: new THREE.Vector3(xPos * surfFactor, yPos * surfFactor, zPos * surfFactor),
 
-      velocity: new THREE.Vector3(velocity.x, velocity.y, velocity.z),
 
       acceleration: new THREE.Vector3(0, randomRange(-0.1, 0), 0),
       accelerationSpread: new THREE.Vector3(.1, 0.01, .1),
@@ -67,7 +64,7 @@ var Emitter = function(lat, lon, numUsers, locationsGroup, minUsers, maxUsers) {
 
   var update = function(newNumUsers) {
     numUsers = newNumUsers;
-    var velMultiplier = map(numUsers, minUsers, maxUsers, 1, 20) * .05;
+    var velMultiplier = map(numUsers, minUsers, maxUsers, 0, velMultFactor) * .05;
     velocity.x = xPos * velMultiplier;
     velocity.y = yPos * velMultiplier;
     velocity.z = zPos * velMultiplier;

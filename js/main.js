@@ -2,8 +2,10 @@ var Main = function() {
 	var locationData;
 	var xhr;
 	var newDataCurrentIndex = 0;
-	var newItemsPerRequest = 9;
+	var newItemsPerRequest = 6;
 	var world;
+
+	var updateInterval = 5000;
 
 	var newData;
 
@@ -32,7 +34,7 @@ var Main = function() {
 		newDataCurrentIndex += newItemsPerRequest;
 
 	}
-    setInterval(getUpdatedData, 3000);
+    setInterval(getUpdatedData, updateInterval);
 
 	xhr2.onreadystatechange = function(e){
 		if(xhr2.readyState === 4) {
@@ -45,7 +47,7 @@ var Main = function() {
 
 	function increaseNumUsers(data){
 		for(var i = 0; i < data.length; i+=3 ){
-			data[i+2] = randomRange(1, 1000);
+			data[i+2] = randomRange(1, 2000);
 		}
 
 		return data;
