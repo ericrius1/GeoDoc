@@ -1,14 +1,16 @@
-var Emitter = function(lat, lon, numUsers, locationsGroup, minUsers, maxUsers) {
+var Emitter = function(lat, lon, initialNumUsers, locationsGroup, minUsers, maxUsers) {
+
+  this.numUsers = initialNumUsers;
 
 
   var emitter;
   var particlesPerSecond = 100;
   var lat = lat;
   var lon = lon;
-  var color;
-  var velocity = {};
+  var currentColor = new THREE.Color();
 
-  this.numUsers = numUsers;
+  var velocity = {};
+  var accelSpread = {};
 
   var minUsers = minUsers;
   var maxUsers = maxUsers;
@@ -23,10 +25,7 @@ var Emitter = function(lat, lon, numUsers, locationsGroup, minUsers, maxUsers) {
   var velMultiplier;
   //Raise this to increase velocity
   var velMultFactor = 20;
-
-
   var surfFactor = 0.5;
-
   var sizeStart = .1;
 
 
@@ -38,24 +37,17 @@ var Emitter = function(lat, lon, numUsers, locationsGroup, minUsers, maxUsers) {
 
   var init = function() {
 
-    color = mapColor(numUsers);
+    recalculate();
 
     emitter = new ShaderParticleEmitter({
       position: new THREE.Vector3(xPos * surfFactor, yPos * surfFactor, zPos * surfFactor),
-      accelerationSpread: new THREE.Vector3(.1, .1, .1),
+      velocity: velocity,
 
-      colorStart: color,
+      colorStart: currentColor,
       colorStartSpread: new THREE.Vector3(.2, .2, .2),
-      colorEnd: color,
+      colorEnd: currentColor,
       sizeStart: sizeStart,
       sizeEnd: sizeStart,
-
-      opacityStart: 0.3,
-      opacityMidde: 0.8,
-      opacityEnd: 0.5,
-
-
-
       particlesPerSecond: particlesPerSecond
     });
 
@@ -65,26 +57,34 @@ var Emitter = function(lat, lon, numUsers, locationsGroup, minUsers, maxUsers) {
 
   var update = function(newNumUsers) {
     numUsers = newNumUsers;
-    var velMultiplier = map(numUsers, minUsers, maxUsers, 0, velMultFactor) * .05;
+
+    recalculate();
+
+    emitter.setOption('velocity', new THREE.Vector3(velocity.x, velocity.y, velocity.z));
+    emitter.setOption('accelerationSpread', new THREE.Vector3(accelSpread.x, accelSpread.y, accelSpread.z));
+    emitter.setOption('colorStart', currentColor);
+    emitter.setOption('colorEnd', currentColor);
+  }
+
+  var recalculate = function() {
+    mapColor(this.numUsers);
+
+    var velMultiplier = map(this.numUsers, minUsers, maxUsers, 0, velMultFactor) * .05;
     velocity.x = xPos * velMultiplier;
     velocity.y = yPos * velMultiplier;
     velocity.z = zPos * velMultiplier;
 
+    var accelFactor = map(this.numUsers, minUsers, maxUsers, 0, .1);
+    accelSpread.x = accelFactor
+    accelSpread.y = accelFactor
+    accelSpread.z = accelFactor
 
-    color = mapColor(numUsers);
-
-    emitter.setOption('velocity', new THREE.Vector3(velocity.x, velocity.y, velocity.z));
-    emitter.setOption('colorStart', color);
-    emitter.setOption('colorEnd', color);
   }
 
   var mapColor = function(numUsers) {
-    var c = new THREE.Color();
     // h,s,l ranges are in 0.0 - 1.0
-    var h = map(numUsers, minUsers, maxUsers, 0, 1)
-
-    c.setHSL(h, 0.5, 0.5);
-    return c;
+    var h = map(this.numUsers, minUsers, maxUsers, 0, 1)
+    currentColor.setHSL(h, 0.5, 0.5);
   }
   this.init = init;
   this.update = update;

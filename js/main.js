@@ -2,7 +2,7 @@ var Main = function() {
 	var locationData;
 	var xhr;
 	var newDataCurrentIndex = 0;
-	var newItemsPerRequest = 6;
+	var newItemsPerRequest = 3; //3 = 1 new item!
 	var world;
 
 	var updateInterval = 5000;
