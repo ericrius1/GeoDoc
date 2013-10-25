@@ -2,12 +2,12 @@ var Emitter = function(lat, lon, numUsers, locationsGroup) {
 
 
   var emitter;
-  var particlesPerSecond = 100;
+  var particlesPerSecond = 10;
   var lat = lat;
   var lon = lon;
   var numUsers = randomRange(100, 1000);
   var color;
-  var size = 0.13;
+  var size = 0.013;
   var velocity = {};
 
   var phi = (90 - lat) * Math.PI / 180;
@@ -33,7 +33,6 @@ var Emitter = function(lat, lon, numUsers, locationsGroup) {
 
   var init = function() {
 
-    console.log(velocity.y)
     color = mapColor(xPos);
 
     emitter = new ShaderParticleEmitter({
@@ -61,10 +60,9 @@ var Emitter = function(lat, lon, numUsers, locationsGroup) {
   }
 
   var update = function() {
-    velocity.y += 100;
-    velocity.x += 100;
-    emitter = null
-    init();
+
+    // xPos+=10;
+    // emitter.setOption(position, new Vector3(xPos, yPos, zPos));
   }
 
   var mapColor = function() {
