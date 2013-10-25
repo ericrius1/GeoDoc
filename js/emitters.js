@@ -35,7 +35,6 @@ var Emitters = function(scene) {
 			var emitter = emitters[i];
 			var numUsers = emitter.numUsers;
 			var newNumUsers  = randomRange(Math.max( minUsers, numUsers - 500), Math.min(numUsers + 500, maxUsers));
-			if(i ===1)console.log('new users', newNumUsers);
 			emitter.update(newNumUsers)
 		}
 
