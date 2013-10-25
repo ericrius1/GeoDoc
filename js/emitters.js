@@ -13,16 +13,6 @@ var Emitters = function(scene) {
 
 	var maxAge = 1;
 
-	var init = function(locationData) {
-
-		locationsGroup = new ShaderParticleGroup({
-			texture: THREE.ImageUtils.loadTexture('assets/smokeparticle.png'),
-			maxAge: maxAge
-		});
-		add(locationData);
-		scene.add(locationsGroup.mesh)
-
-	}
 
 	var add = function(locationData) {
 		locationsGroup = new ShaderParticleGroup({
@@ -34,6 +24,8 @@ var Emitters = function(scene) {
 			emitter.init();
 			emitters.push(emitter);
 		}
+
+		scene.add(locationsGroup.mesh)
 	}
 
 	var tick = function(dt) {
@@ -47,7 +39,6 @@ var Emitters = function(scene) {
 		// }
 	}
 
-	this.init = init;
 	this.tick = tick;
 	this.add = add; 
 
