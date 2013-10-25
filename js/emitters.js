@@ -25,10 +25,7 @@ var Emitters = function(scene) {
 	}
 
 	var tick = function(dt) {
-		for (var i = 0; i < emitters.length; i++) {
-			emitters[i].tick(dt)
-		}
-
+		locationsGroup.tick(dt);
 	}
 
 	this.init = init;

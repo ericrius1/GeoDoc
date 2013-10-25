@@ -51,11 +51,6 @@ var Emitter = function(lat, lon, numUsers, locationsGroup) {
 
     locationsGroup.addEmitter(emitter);
 
-
-  }
-
-  var tick = function(dt) {
-    locationsGroup.tick(dt);
   }
 
   var mapColor = function() {
@@ -66,6 +61,5 @@ var Emitter = function(lat, lon, numUsers, locationsGroup) {
     return c;
   }
   this.init = init;
-  this.tick = tick;
 
 }
