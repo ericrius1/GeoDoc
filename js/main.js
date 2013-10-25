@@ -20,6 +20,8 @@ var Main = function() {
 		if (xhr.readyState === 4) {
 			if (xhr.status === 200) {
 			   locationData = JSON.parse(xhr.responseText);
+			   //Increase num users
+			   	locationData = setNumUsers(locationData)
 				world = new World(locationData);
 				world.init();
 				world.setUpEmitters();
@@ -29,7 +31,6 @@ var Main = function() {
 	xhr.send(null);
 
 	function beginDisplay(){
-		console.log('bdur')
 		getUpdatedData();
 		setInterval(getUpdatedData, updateInterval);
 	}
@@ -44,7 +45,7 @@ var Main = function() {
 	}
 
 
-	function increaseNumUsers(data) {
+	function setNumUsers(data) {
 		for (var i = 0; i < data.length; i += 3) {
 			data[i + 2] = randomRange(1, 2000);
 		}
