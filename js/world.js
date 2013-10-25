@@ -55,7 +55,7 @@ var World = function(locationData) {
 		var containerEarth = new THREE.Object3D()
 		containerEarth.rotateZ(-23.4 * Math.PI / 180)
 		containerEarth.position.z = 0
-		//scene.add(containerEarth)
+		scene.add(containerEarth)
 
 		var earthMesh = THREEx.Planets.createEarth()
 		earthMesh.receiveShadow = true

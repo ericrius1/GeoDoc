@@ -2,7 +2,7 @@ var Emitter = function(lat, lon, numUsers, locationsGroup) {
 
 
   var emitter;
-  var particlesPerSecond = 40;
+  var particlesPerSecond = 100;
   var lat = lat;
   var lon = lon;
   var numUsers = randomRange(100, 1000)
@@ -30,21 +30,19 @@ var Emitter = function(lat, lon, numUsers, locationsGroup) {
     zPos = Math.sin(phi) * Math.sin(theta);
     color = mapColor(xPos);
     emitter = new ShaderParticleEmitter({
-      position: new THREE.Vector3(xPos * surfFactor, yPos * surfFactor, zPos * surfFactor),
+      position: new THREE.Vector3(xPos*surfFactor, yPos*surfFactor, zPos*surfFactor),
 
+      velocity: new THREE.Vector3(0, -.55, 0),
+      velocitySpread: new THREE.Vector3(.10, .075, .10),
 
-
-      velocity: new THREE.Vector3(0, 0.015, 0),
-
+      acceleration: new THREE.Vector3(0, -.01, 0),
+      accelerationSpread: new THREE.Vector3(.01, 0, .01),
 
 
       colorStart: color,
       colorEnd: color,
       size: .1,
       sizeEnd: .01,
-
-      opacityStart: 1,
-      opacityEnd: .2,
 
       particlesPerSecond: particlesPerSecond
     });
@@ -58,7 +56,7 @@ var Emitter = function(lat, lon, numUsers, locationsGroup) {
     locationsGroup.tick(dt);
   }
 
-  var mapColor = function(x) {
+  var mapColor = function() {
     var c = new THREE.Color();
     // h,s,l ranges are in 0.0 - 1.0
     var h = map(numUsers, 100, 1000, 1, 0)
