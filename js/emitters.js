@@ -4,9 +4,12 @@ var Emitters = function(scene) {
 	var locationData;
 	var count = 0;
 
+	var minUsers = 1;
+	var maxUsers = 40000;
+
 	var locationsGroup;
 
-	var maxAge = 2;
+	var maxAge = 1;
 
 	var init = function(locationData) {
 
@@ -16,7 +19,7 @@ var Emitters = function(scene) {
 		});
 		locationData = locationData;
 		for (var i = 0; i < locationData.length; i += 2) {
-			var emitter = new Emitter(locationData[i], locationData[i + 1], locationData[i + 2], locationsGroup)
+			var emitter = new Emitter(locationData[i], locationData[i + 1], randomRange(minUsers, maxUsers), locationsGroup, minUsers, maxUsers)
 			emitters.push(emitter);
 			emitter.init();
 		}
@@ -30,7 +33,7 @@ var Emitters = function(scene) {
 		count++;
 		if(count % 100 === 0){
 			for(var i = 0; i < emitters.length; i++){
-				emitters[i].update();
+				emitters[i].update(randomRange(minUsers, maxUsers));
 			}
 
 		}
