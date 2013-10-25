@@ -2,7 +2,7 @@ var Emitter = function(lat, lon, numUsers, locationsGroup) {
 
 
   var emitter;
-  var particlesPerSecond = 20;
+  var particlesPerSecond = 40;
   var lat = lat;
   var lon = lon;
   var numUsers = randomRange(100, 1000)
@@ -33,10 +33,9 @@ var Emitter = function(lat, lon, numUsers, locationsGroup) {
       position: new THREE.Vector3(xPos * surfFactor, yPos * surfFactor, zPos * surfFactor),
 
 
-      velocity: new THREE.Vector3(xPos * velMultiplier, yPos * velMultiplier, zPos * velMultiplier),
-      velocitySpread: new THREE.Vector3(.1, 0.1, .1),
 
-      accelertion: new THREE.Vector3(1, 1, 1),
+      velocity: new THREE.Vector3(0, 0.015, 0),
+
 
 
       colorStart: color,
@@ -45,7 +44,7 @@ var Emitter = function(lat, lon, numUsers, locationsGroup) {
       sizeEnd: .01,
 
       opacityStart: 1,
-      opacityEnd: 0,
+      opacityEnd: .2,
 
       particlesPerSecond: particlesPerSecond
     });
@@ -62,8 +61,7 @@ var Emitter = function(lat, lon, numUsers, locationsGroup) {
   var mapColor = function(x) {
     var c = new THREE.Color();
     // h,s,l ranges are in 0.0 - 1.0
-    var h = map(numUsers, 0, 1000, 1, 0)
-    console.log(h)
+    var h = map(numUsers, 100, 1000, 1, 0)
     c.setHSL(h, .5, .5);
     return c;
   }
