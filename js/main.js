@@ -1,6 +1,3 @@
-
-
-
 var Main = function() {
 	var locationData;
 	var xhr;
@@ -23,6 +20,7 @@ var Main = function() {
 				world = new World(locationData);
 				world.init();
 				world.setUpEmitters();
+				setUpAudio();
 			}
 		}
 	};
@@ -30,30 +28,36 @@ var Main = function() {
 	xhr2.send(null);
 
 
-	var getUpdatedData = function(){
+	var getUpdatedData = function() {
 		//ok we're getting new data... now update globe with it and then increment so next time we get new points
 		var tempData = newData.slice(newDataCurrentIndex, newDataCurrentIndex + newItemsPerRequest);
 		world.updateData(tempData);
 		newDataCurrentIndex += newItemsPerRequest;
 
 	}
-    setInterval(getUpdatedData, updateInterval);
+	setInterval(getUpdatedData, updateInterval);
 
-	xhr2.onreadystatechange = function(e){
-		if(xhr2.readyState === 4) {
-			if(xhr2.status === 200){
+	xhr2.onreadystatechange = function(e) {
+		if (xhr2.readyState === 4) {
+			if (xhr2.status === 200) {
 				newData = increaseNumUsers(JSON.parse(xhr2.responseText));
-				
+
 			}
 		}
 	}
 
-	function increaseNumUsers(data){
-		for(var i = 0; i < data.length; i+=3 ){
-			data[i+2] = randomRange(1, 2000);
+	function increaseNumUsers(data) {
+		for (var i = 0; i < data.length; i += 3) {
+			data[i + 2] = randomRange(1, 2000);
 		}
 
 		return data;
+	}
+
+	function setUpAudio(){
+		var audioElement = document.createElement('audio');
+		audioElement.setAttribute('src', 'assets/GoldIn.mp3');
+		audioElement.play();
 	}
 
 
