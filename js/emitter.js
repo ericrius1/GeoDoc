@@ -61,8 +61,8 @@ var Emitter = function(lat, lon, numUsers, locationsGroup) {
 
   var update = function() {
 
-    // xPos+=10;
-    // emitter.setOption('position', new THREE.Vector3(xPos, yPos, zPos));
+    velocity.y +=1;
+    emitter.setOption('velocity', new THREE.Vector3(velocity.x, velocity.y, velocity.z));
   }
 
   var mapColor = function() {
