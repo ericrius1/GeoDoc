@@ -9,7 +9,7 @@ var Main = function() {
 
 	var updateInterval = 300;
 	var newLocationFreq = 1.0;
-	var newLocationDampingFactor = 0.01;
+	var newLocationDampingFactor = 0.02;
 	var lossFrequency = 0.002;
 
 	var newData;
