@@ -26,10 +26,13 @@ var World = function(locationData) {
 		var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 10000);
 		camera.position.z = 2;
 
+
+		windowResize(renderer, camera);
+
 		controls = new THREE.OrbitControls(camera);
 		controls.autoRotate = true;
 		controls.autoRotateSpeed = -0.4;
-		
+
 
 		setUpLights(scene);
 
@@ -173,9 +176,30 @@ var World = function(locationData) {
 		emitters.updateData(locationData);
 	}
 
-	var updateData = function(newLocationData){
-		emitters.updateData(newLocationData);	
+	var updateData = function(newLocationData) {
+		emitters.updateData(newLocationData);
 
+	}
+
+	var windowResize = function(renderer, camera) {
+		var callback = function() {
+			// notify the renderer of the size change
+			renderer.setSize(window.innerWidth, window.innerHeight);
+			// update the camera
+			camera.aspect = window.innerWidth / window.innerHeight;
+			camera.updateProjectionMatrix();
+		}
+		// bind the resize event
+		window.addEventListener('resize', callback, false);
+		// return .stop() the function to stop watching window resize
+		return {
+			/**
+			 * Stop watching window resize
+			 */
+			stop: function() {
+				window.removeEventListener('resize', callback);
+			}
+		};
 	}
 
 	this.init = init;
