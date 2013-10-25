@@ -7,7 +7,7 @@ var Main = function() {
 	var world;
 	var song;
 
-	var updateInterval = 1000;
+	var updateInterval = 500;
 
 	var newData;
 
@@ -37,11 +37,10 @@ var Main = function() {
 
 
 	var getUpdatedData = function() {
-		//ok we're getting new data... now update globe with it and then increment so next time we get new points
-		var tempData = locationData.slice(newDataCurrentIndex, newDataCurrentIndex + newItemsPerRequest);
+		//ok we're getting new data... now update globe with it and then increment so next time we get new points. sometimes
+		var tempData = Math.random() < 0.5 ? locationData.slice(newDataCurrentIndex, newDataCurrentIndex + newItemsPerRequest) : null;
 		world.updateData(tempData);
 		newDataCurrentIndex += newItemsPerRequest;
-
 	}
 
 
