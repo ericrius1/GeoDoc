@@ -7,13 +7,15 @@ var Main = function() {
 	var world;
 	var song;
 
-	var updateInterval = 300;
-	var newLocationFreq = 1;
+	var updateInterval = 200;
+	var newLocationFreq = 1.0;
+	var newLocationDampingFactor = 0.005;
+	var lossFrequency = 0.002;
 
 	var newData;
 
 	setUpAudio();
-	setTimeout(beginDisplay, 13000);
+	setTimeout(beginDisplay, 1300);
 
 	xhr = new XMLHttpRequest();
 	xhr.open('GET', 'assets/newLocData.json', true);
@@ -23,7 +25,7 @@ var Main = function() {
 			   locationData = JSON.parse(xhr.responseText);
 			   //Increase num users
 			   	locationData = setNumUsers(locationData)
-				world = new World(locationData);
+				world = new World(lossFrequency);
 				world.init();
 				world.setUpEmitters();
 			}
@@ -41,7 +43,8 @@ var Main = function() {
 		//ok we're getting new data... now update globe with it and then increment so next time we get new points. sometimes
 		var tempData = Math.random() < newLocationFreq ? locationData.slice(newDataCurrentIndex, newDataCurrentIndex + newItemsPerRequest) : null;
 		world.updateData(tempData);
-		newLocationFreq = Math.max(0.05, newLocationFreq-=0.05);
+		//Never let rate of new locations get at or below loss of locations
+		newLocationFreq = Math.max(lossFrequency + (lossFrequency/4), newLocationFreq-newLocationDampingFactor);
 		newDataCurrentIndex += newItemsPerRequest;
 	}
 

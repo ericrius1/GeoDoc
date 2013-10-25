@@ -24,7 +24,7 @@ var Emitter = function(lat, lon, initialNumUsers, locationsGroup, minUsers, maxU
 
   var velMultiplier;
   //Raise this to increase velocity ****************
-  var velMultFactor = 20;
+  var velMultFactor = 40;
   var surfFactor = 0.5;
   var sizeStart = .1;
 
@@ -49,7 +49,10 @@ var Emitter = function(lat, lon, initialNumUsers, locationsGroup, minUsers, maxU
       colorEnd: currentColor,
       sizeStart: sizeStart,
       sizeEnd: sizeStart,
-      particlesPerSecond: particlesPerSecond
+      particlesPerSecond: particlesPerSecond,
+
+      opacityStart: 1.0,
+      opacityEnd: 0.2
     });
 
     locationsGroup.addEmitter(myEmitter);
@@ -76,7 +79,7 @@ var Emitter = function(lat, lon, initialNumUsers, locationsGroup, minUsers, maxU
   this.recalculate = function() {
     this.mapColor(this.numUsers);
 
-    var velMultiplier = map(this.numUsers, minUsers, maxUsers, 0, velMultFactor) * .05;
+    var velMultiplier = map(this.numUsers, minUsers, maxUsers, 0, velMultFactor) * .005;
     velocity.x = xPos * velMultiplier;
     velocity.y = yPos * velMultiplier;
     velocity.z = zPos * velMultiplier;
@@ -90,7 +93,8 @@ var Emitter = function(lat, lon, initialNumUsers, locationsGroup, minUsers, maxU
 
   this.mapColor = function() {
     // h,s,l ranges are in 0.0 - 1.0
-    var h = map(this.numUsers, minUsers, maxUsers, 0, 1)
+    console.log(this.numUsers)
+    var h = map(this.numUsers, minUsers, maxUsers, 1, 0)
     currentColor.setHSL(h, 0.5, 0.5);
   }
 

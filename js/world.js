@@ -1,6 +1,8 @@
 var World = function() {
 	var scene;
 
+	var lossFrequency;
+
 	var lon = 0,
 		lat = 0,
 		phi = 0,
@@ -129,7 +131,7 @@ var World = function() {
 
 
 	var setUpEmitters = function() {
-		myEmitters = new Emitters(scene);
+		myEmitters = new Emitters(scene, lossFrequency);
 	}
 
 	var updateData = function(newLocationData) {
