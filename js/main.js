@@ -7,12 +7,13 @@ var Main = function() {
 	var world;
 	var song;
 
-	var updateInterval = 500;
+	var updateInterval = 300;
+	var newLocationFreq = 1;
 
 	var newData;
 
 	setUpAudio();
-	setTimeout(beginDisplay, 500);
+	setTimeout(beginDisplay, 13000);
 
 	xhr = new XMLHttpRequest();
 	xhr.open('GET', 'assets/newLocData.json', true);
@@ -38,8 +39,9 @@ var Main = function() {
 
 	var getUpdatedData = function() {
 		//ok we're getting new data... now update globe with it and then increment so next time we get new points. sometimes
-		var tempData = Math.random() < 0.5 ? locationData.slice(newDataCurrentIndex, newDataCurrentIndex + newItemsPerRequest) : null;
+		var tempData = Math.random() < newLocationFreq ? locationData.slice(newDataCurrentIndex, newDataCurrentIndex + newItemsPerRequest) : null;
 		world.updateData(tempData);
+		newLocationFreq = Math.max(0.05, newLocationFreq-=0.05);
 		newDataCurrentIndex += newItemsPerRequest;
 	}
 
@@ -55,7 +57,7 @@ var Main = function() {
 	function setUpAudio(){
 		song = document.createElement('audio');
 		song.setAttribute('src', 'assets/odyssey.mp3');
-		//song.play();
+		song.play();
 
 	}
 
