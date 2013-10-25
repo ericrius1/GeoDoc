@@ -139,7 +139,6 @@ var World = function(locationData) {
 			light.shadowCameraRight = 1
 			light.shadowCameraTop = 1
 			light.shadowCameraBottom = -1
-			// light.shadowCameraVisible	= true
 
 			light.shadowBias = 0.001
 			light.shadowDarkness = 0.2

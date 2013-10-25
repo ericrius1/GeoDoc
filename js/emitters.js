@@ -2,6 +2,7 @@ var Emitters = function(scene) {
 	var scene = scene;
 	var emitters = [];
 	var locationData;
+	var count = 0;
 
 	var locationsGroup;
 
@@ -26,6 +27,13 @@ var Emitters = function(scene) {
 
 	var tick = function(dt) {
 		locationsGroup.tick(dt);
+		count++;
+		if(count % 100 === 0){
+			for(var i = 0; i < emitters.length; i++){
+				emitters[i].update();
+			}
+
+		}
 	}
 
 	this.init = init;

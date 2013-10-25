@@ -7,12 +7,23 @@ var Emitter = function(lat, lon, numUsers, locationsGroup) {
   var lon = lon;
   var numUsers = randomRange(100, 1000);
   var color;
+  var size = 0.13;
+  var velocity = {};
+
+  var phi = (90 - lat) * Math.PI / 180;
+  var theta = (180 - lon) * Math.PI / 180;
+
+  var xPos = Math.sin(phi) * Math.cos(theta);
+  var yPos = Math.cos(phi);
+  var zPos = Math.sin(phi) * Math.sin(theta);
 
   var velMultiplier = map(numUsers, 0, 1000, 1, 10) * .05;
+  velocity.x = xPos * velMultiplier;
+  velocity.y = yPos * velMultiplier;
+  velocity.z = zPos * velMultiplier;
 
   var surfFactor = 0.5;
 
-  var xPos, yPos, zPos;
 
   var locationsGroup = locationsGroup;
 
@@ -22,26 +33,22 @@ var Emitter = function(lat, lon, numUsers, locationsGroup) {
 
   var init = function() {
 
-    var phi = (90 - lat) * Math.PI / 180;
-    var theta = (180 - lon) * Math.PI / 180;
-
-    xPos = Math.sin(phi) * Math.cos(theta);
-    yPos = Math.cos(phi);
-    zPos = Math.sin(phi) * Math.sin(theta);
+    console.log(velocity.y)
     color = mapColor(xPos);
+
     emitter = new ShaderParticleEmitter({
       position: new THREE.Vector3(xPos * surfFactor, yPos * surfFactor, zPos * surfFactor),
 
-      velocity: new THREE.Vector3(xPos * velMultiplier, yPos * velMultiplier, zPos * velMultiplier),
+      velocity: new THREE.Vector3(velocity.x, velocity.y, velocity.z),
 
-   
-      accelerationSpread: new THREE.Vector3(.01, 0.01, .01),
+
+      accelerationSpread: new THREE.Vector3(.02, 0.01, .02),
 
 
       colorStart: color,
       colorEnd: color,
-      size: .1,
-      sizeEnd: .1,
+      size: size,
+      sizeEnd: size * 0.5,
 
       opacityStart: 1,
       opacityend: .4,
@@ -53,6 +60,13 @@ var Emitter = function(lat, lon, numUsers, locationsGroup) {
 
   }
 
+  var update = function() {
+    velocity.y += 100;
+    velocity.x += 100;
+    emitter = null
+    init();
+  }
+
   var mapColor = function() {
     var c = new THREE.Color();
     // h,s,l ranges are in 0.0 - 1.0
@@ -61,5 +75,6 @@ var Emitter = function(lat, lon, numUsers, locationsGroup) {
     return c;
   }
   this.init = init;
+  this.update = update;
 
 }
