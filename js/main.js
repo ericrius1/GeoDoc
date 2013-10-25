@@ -33,7 +33,7 @@ var Main = function() {
 		newDataCurrentIndex += newItemsPerRequest;
 
 	}
-    setInterval(getUpdatedData, 1000);
+    setInterval(getUpdatedData, 3000);
 
 	xhr2.onreadystatechange = function(e){
 		if(xhr2.readyState === 4) {

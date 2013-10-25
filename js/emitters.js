@@ -1,7 +1,7 @@
 var Emitters = function(scene) {
 	var scene = scene;
 	var emitters = [];
-	var locationData;
+	var locationData = [];
 	var count = 0;
 
 	var minUsers = 1;
@@ -9,12 +9,16 @@ var Emitters = function(scene) {
 	var emitter;
 
 
+	var locationGroups;
 	var locationsGroup;
-
 	var maxAge = 1;
 
 
-	var add = function(locationData) {
+	var add = function(newLocationData) {
+		locationsGroup  && scene.remove(locationsGroup.mesh)
+		console.log(newLocationData)
+		locationData = locationData.concat(newLocationData)
+		console.log(locationData)
 		locationsGroup = new ShaderParticleGroup({
 			texture: THREE.ImageUtils.loadTexture('assets/smokeparticle.png'),
 			maxAge: maxAge
