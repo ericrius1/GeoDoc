@@ -14,8 +14,8 @@ var Emitters = function(scene) {
 	var locationsGroup;
 	var maxAge = 5;
 
-	var lossFrequency = 0.0;
-	var updateFrequency = 1.0;
+	var lossFrequency = 0.01;
+	var updateFrequency = 0.2;
 
 
 	var updateData = function(newLocationData) {
@@ -29,7 +29,7 @@ var Emitters = function(scene) {
 			}
 			else if(Math.random() < updateFrequency){
 				var numUsers = emitter.numUsers;
-				var newNumUsers = randomRange(Math.max(minUsers, numUsers - 500), Math.min(numUsers + 500, maxUsers));
+				var newNumUsers = randomRange(Math.max(minUsers, numUsers - 200), Math.min(numUsers + 200, maxUsers));
 				emitter.update(newNumUsers)
 				
 			}
