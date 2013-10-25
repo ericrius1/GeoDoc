@@ -33,16 +33,18 @@ var Emitter = function(lat, lon, numUsers, locationsGroup) {
       position: new THREE.Vector3(xPos * surfFactor, yPos * surfFactor, zPos * surfFactor),
 
       velocity: new THREE.Vector3(xPos * velMultiplier, yPos * velMultiplier, zPos * velMultiplier),
-      velocitySpread: new THREE.Vector3(0, .0075, 0),
 
-      acceleration: new THREE.Vector3(0, -.1, 0),
-      accelerationSpread: new THREE.Vector3(.1, 0, .1),
+   
+      accelerationSpread: new THREE.Vector3(.01, 0.01, .01),
 
 
       colorStart: color,
       colorEnd: color,
       size: .1,
-      sizeEnd: .01,
+      sizeEnd: .1,
+
+      opacityStart: 1,
+      opacityend: .4,
 
       particlesPerSecond: particlesPerSecond
     });
