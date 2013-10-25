@@ -5,10 +5,10 @@ var Emitter = function(lat, lon, numUsers, locationsGroup) {
   var particlesPerSecond = 100;
   var lat = lat;
   var lon = lon;
-  var numUsers = randomRange(100, 1000)
+  var numUsers = randomRange(100, 200);
   var color;
 
-  var velMultiplier = numUsers / 1000;
+  var velMultiplier = map(numUsers, 0, 1000, 1, 10) * .05;
 
   var surfFactor = 0.5;
 
@@ -30,13 +30,13 @@ var Emitter = function(lat, lon, numUsers, locationsGroup) {
     zPos = Math.sin(phi) * Math.sin(theta);
     color = mapColor(xPos);
     emitter = new ShaderParticleEmitter({
-      position: new THREE.Vector3(xPos*surfFactor, yPos*surfFactor, zPos*surfFactor),
+      position: new THREE.Vector3(xPos * surfFactor, yPos * surfFactor, zPos * surfFactor),
 
-      velocity: new THREE.Vector3(0, -.55, 0),
-      velocitySpread: new THREE.Vector3(.10, .075, .10),
+      velocity: new THREE.Vector3(xPos * velMultiplier, yPos * velMultiplier, zPos * velMultiplier),
+      velocitySpread: new THREE.Vector3(0, .0075, 0),
 
-      acceleration: new THREE.Vector3(0, -.01, 0),
-      accelerationSpread: new THREE.Vector3(.01, 0, .01),
+      acceleration: new THREE.Vector3(0, -.1, 0),
+      accelerationSpread: new THREE.Vector3(.1, 0, .1),
 
 
       colorStart: color,
