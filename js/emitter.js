@@ -4,7 +4,7 @@ var Emitter = function(lat, lon, initialNumUsers, locationsGroup, minUsers, maxU
 
 
   var myEmitter;
-  var particlesPerSecond = 200;
+  var particlesPerSecond = 111;
   var lat = lat;
   var lon = lon;
   var currentColor = new THREE.Color();
@@ -80,7 +80,7 @@ var Emitter = function(lat, lon, initialNumUsers, locationsGroup, minUsers, maxU
   this.recalculate = function() {
     this.mapColor(this.numUsers);
 
-    var velMultiplier = map(this.numUsers, minUsers, maxUsers, 0, velMultFactor) * .01;
+    var velMultiplier = map(this.numUsers, minUsers, maxUsers, 0, velMultFactor) * .011;
     velocity.x = xPos * velMultiplier;
     velocity.y = yPos * velMultiplier;
     velocity.z = zPos * velMultiplier;

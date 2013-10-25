@@ -2,6 +2,7 @@ var World = function() {
 	var scene;
 
 	var lossFrequency;
+	var camPullback = 0.0002;
 
 	var lon = 0,
 		lat = 0,
@@ -113,6 +114,7 @@ var World = function() {
 		requestAnimationFrame(function animate(nowMsec) {
 			// keep looping
 			requestAnimationFrame(animate);
+			camera.position.z += camPullback;
 
 
 
