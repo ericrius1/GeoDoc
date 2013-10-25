@@ -1,13 +1,11 @@
-var World = function(locationData) {
+var World = function() {
 	var scene;
-	var locationData;
 
 	var lon = 0,
 		lat = 0,
 		phi = 0,
 		theta = 0;
 	var init = function() {
-		locationData = locationData;
 
 		var controls;
 
@@ -126,54 +124,9 @@ var World = function(locationData) {
 
 	}
 
-		function setUpLights(scene) {
-
-
-			var light = new THREE.DirectionalLight(0xffffff, 1)
-			light.position.set(10, 10, 10)
-			scene.add(light)
-			light.intensity = 1.5;
-			light.castShadow = true
-			light.shadowCameraNear = 0.01
-			light.shadowCameraFar = 15
-			light.shadowCameraFov = 45
-
-			light.shadowCameraLeft = -1
-			light.shadowCameraRight = 1
-			light.shadowCameraTop = 1
-			light.shadowCameraBottom = -1
-
-			light.shadowBias = 0.001
-			light.shadowDarkness = 0.2
-
-			light.shadowMapWidth = 1024
-			light.shadowMapHeight = 1024
-
-			var light2 = new THREE.DirectionalLight(0xffffff, 1)
-			light2.position.set(-10, -10, -10)
-			scene.add(light2)
-			light2.intensity = 1.5;
-			light2.castShadow = true
-			light2.shadowCameraNear = 0.01
-			light2.shadowCameraFar = 15
-			light2.shadowCameraFov = 45
-
-			light2.shadowCameraLeft = -1
-			light2.shadowCameraRight = 1
-			light2.shadowCameraTop = 1
-			light2.shadowCameraBottom = -1
-			// light2.shadowCameraVisible	= true
-
-			light2.shadowBias = 0.001
-			light2.shadowDarkness = 0.2
-
-			light2.shadowMapWidth = 1024
-			light2.shadowMapHeight = 1024
-		}
 
 	var setUpEmitters = function() {
 		emitters = new Emitters(scene);
-		emitters.updateData(locationData);
 	}
 
 	var updateData = function(newLocationData) {
@@ -200,6 +153,50 @@ var World = function(locationData) {
 				window.removeEventListener('resize', callback);
 			}
 		};
+	}
+	function setUpLights(scene) {
+
+
+		var light = new THREE.DirectionalLight(0xffffff, 1)
+		light.position.set(10, 10, 10)
+		scene.add(light)
+		light.intensity = 1.5;
+		light.castShadow = true
+		light.shadowCameraNear = 0.01
+		light.shadowCameraFar = 15
+		light.shadowCameraFov = 45
+
+		light.shadowCameraLeft = -1
+		light.shadowCameraRight = 1
+		light.shadowCameraTop = 1
+		light.shadowCameraBottom = -1
+
+		light.shadowBias = 0.001
+		light.shadowDarkness = 0.2
+
+		light.shadowMapWidth = 1024
+		light.shadowMapHeight = 1024
+
+		var light2 = new THREE.DirectionalLight(0xffffff, 1)
+		light2.position.set(-10, -10, -10)
+		scene.add(light2)
+		light2.intensity = 1.5;
+		light2.castShadow = true
+		light2.shadowCameraNear = 0.01
+		light2.shadowCameraFar = 15
+		light2.shadowCameraFov = 45
+
+		light2.shadowCameraLeft = -1
+		light2.shadowCameraRight = 1
+		light2.shadowCameraTop = 1
+		light2.shadowCameraBottom = -1
+		// light2.shadowCameraVisible	= true
+
+		light2.shadowBias = 0.001
+		light2.shadowDarkness = 0.2
+
+		light2.shadowMapWidth = 1024
+		light2.shadowMapHeight = 1024
 	}
 
 	this.init = init;
