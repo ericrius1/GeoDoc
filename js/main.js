@@ -57,7 +57,7 @@ var Main = function() {
 	function setUpAudio(){
 		var audioElement = document.createElement('audio');
 		audioElement.setAttribute('src', 'assets/GoldIn.mp3');
-		audioElement.play();
+		//audioElement.play();
 	}
 
 

@@ -19,7 +19,7 @@ var Emitters = function(scene) {
 	var updateData = function(newLocationData) {
 		//We can get new locations as well as new numUser information for previous locations
 		locationsGroup = new ShaderParticleGroup({
-			texture: THREE.ImageUtils.loadTexture('assets/smokeparticle.png'),
+			texture: THREE.ImageUtils.loadTexture('assets/Envelope.png'),
 			maxAge: maxAge
 		});
 

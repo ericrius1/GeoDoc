@@ -28,7 +28,7 @@ var World = function(locationData) {
 
 		controls = new THREE.OrbitControls(camera);
 		controls.autoRotate = true;
-		controls.autoRotateSpeed = -0.9;
+		controls.autoRotateSpeed = -0.4;
 		
 
 		setUpLights(scene);

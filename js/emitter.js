@@ -2,7 +2,7 @@ var Emitter = function(lat, lon, numUsers, locationsGroup, minUsers, maxUsers) {
 
 
   var emitter;
-  var particlesPerSecond = 300;
+  var particlesPerSecond = 100;
   var lat = lat;
   var lon = lon;
   var color;
@@ -21,12 +21,12 @@ var Emitter = function(lat, lon, numUsers, locationsGroup, minUsers, maxUsers) {
   var zPos = Math.sin(phi) * Math.sin(theta);
 
   var velMultiplier;
-  var velMultFactor = 20;
+  var velMultFactor = 10;
 
 
   var surfFactor = 0.5;
 
-  var sizeStart = .2;
+  var sizeStart = .1;
 
 
   var locationsGroup = locationsGroup;
@@ -50,10 +50,11 @@ var Emitter = function(lat, lon, numUsers, locationsGroup, minUsers, maxUsers) {
       colorStart: color,
       colorEnd: color,
       sizeStart: sizeStart,
-      sizeEnd: sizeStart * 0.8,
+      sizeEnd: sizeStart,
 
-      opacityStart: 0.9,
-      opacityend: .3,
+      opacityStart: 0.3,
+      opacityMidde: 0.7,
+      opacityEnd: 0.5,
 
 
       particlesPerSecond: particlesPerSecond
