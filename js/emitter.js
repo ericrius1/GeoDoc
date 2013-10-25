@@ -42,9 +42,9 @@ var Emitter = function(lat, lon, numUsers, locationsGroup, minUsers, maxUsers) {
 
     emitter = new ShaderParticleEmitter({
       position: new THREE.Vector3(xPos * surfFactor, yPos * surfFactor, zPos * surfFactor),
-
-
-
+      //acceleration: new THREE.Vector3(-xPos, -yPos, -zPos),
+       accelerationSpread: new THREE.Vector3(1, 1, 1),
+      
 
       colorStart: color,
       colorStartSpread: new THREE.Vector3(.2, .2, .2),
@@ -56,9 +56,6 @@ var Emitter = function(lat, lon, numUsers, locationsGroup, minUsers, maxUsers) {
       opacityMidde: 0.7,
       opacityEnd: 0.5,
 
-      particleMass: 30,
-      planetMass: 100,
-      planetPosition: new THREE.Vector3(0, 0, 0),
 
 
       particlesPerSecond: particlesPerSecond
