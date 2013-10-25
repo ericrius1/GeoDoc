@@ -1,18 +1,18 @@
 var Main = function() {
 
-	var init = function(){
-
-
-	}
 	var locationData;
 	var xhr;
 	var newDataCurrentIndex = 0;
 	var newItemsPerRequest = 3; //3 = 1 new item!
 	var world;
+	var song;
 
-	var updateInterval = 5000;
+	var updateInterval = 1000;
 
 	var newData;
+
+	setUpAudio();
+	setTimeout(beginDisplay, 500);
 
 	xhr = new XMLHttpRequest();
 	xhr.open('GET', 'assets/newLocData.json', true);
@@ -23,11 +23,16 @@ var Main = function() {
 				world = new World(locationData);
 				world.init();
 				world.setUpEmitters();
-				setUpAudio();
 			}
 		}
 	};
 	xhr.send(null);
+
+	function beginDisplay(){
+		console.log('bdur')
+		getUpdatedData();
+		setInterval(getUpdatedData, updateInterval);
+	}
 
 
 	var getUpdatedData = function() {
@@ -37,7 +42,6 @@ var Main = function() {
 		newDataCurrentIndex += newItemsPerRequest;
 
 	}
-	setInterval(getUpdatedData, updateInterval);
 
 
 	function increaseNumUsers(data) {
@@ -49,9 +53,10 @@ var Main = function() {
 	}
 
 	function setUpAudio(){
-		var audioElement = document.createElement('audio');
-		audioElement.setAttribute('src', 'assets/odyssey.mp3');
-		//audioElement.play();
+		song = document.createElement('audio');
+		song.setAttribute('src', 'assets/odyssey.mp3');
+		//song.play();
+
 	}
 
 

@@ -130,6 +130,7 @@ var World = function() {
 	}
 
 	var updateData = function(newLocationData) {
+		console.log('shnur')
 		emitters.updateData(newLocationData);
 
 	}

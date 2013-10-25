@@ -4,7 +4,7 @@ var Emitter = function(lat, lon, initialNumUsers, locationsGroup, minUsers, maxU
 
 
   var emitter;
-  var particlesPerSecond = 100;
+  var particlesPerSecond = 200;
   var lat = lat;
   var lon = lon;
   var currentColor = new THREE.Color();
@@ -23,7 +23,7 @@ var Emitter = function(lat, lon, initialNumUsers, locationsGroup, minUsers, maxU
   var zPos = Math.sin(phi) * Math.sin(theta);
 
   var velMultiplier;
-  //Raise this to increase velocity
+  //Raise this to increase velocity ****************
   var velMultFactor = 20;
   var surfFactor = 0.5;
   var sizeStart = .1;
@@ -44,7 +44,7 @@ var Emitter = function(lat, lon, initialNumUsers, locationsGroup, minUsers, maxU
       velocity: velocity,
 
       colorStart: currentColor,
-      colorStartSpread: new THREE.Vector3(.2, .2, .2),
+      colorStartSpread: new THREE.Vector3(.1, .1, .1),
       colorEnd: currentColor,
       sizeStart: sizeStart,
       sizeEnd: sizeStart,
