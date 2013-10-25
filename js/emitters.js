@@ -6,6 +6,8 @@ var Emitters = function(scene) {
 
 	var minUsers = 1;
 	var maxUsers = 40000;
+	var emitter;
+
 
 	var locationsGroup;
 
@@ -18,20 +20,20 @@ var Emitters = function(scene) {
 			maxAge: maxAge
 		});
 		add(locationData);
-		scene.add(locationsGroup.mesh);
+		scene.add(locationsGroup.mesh)
 
 	}
 
 	var add = function(locationData) {
+		locationsGroup = new ShaderParticleGroup({
+			texture: THREE.ImageUtils.loadTexture('assets/smokeparticle.png'),
+			maxAge: maxAge
+		});
 		for (var i = 0; i < locationData.length; i += 3) {
-			console.log(locationsGroup)
-			var emitter = new Emitter(locationData[i], locationData[i + 1], randomRange(minUsers, maxUsers), locationsGroup, minUsers, maxUsers)
-			emitters.push(emitter);
+			emitter = new Emitter(locationData[i], locationData[i + 1], randomRange(minUsers, maxUsers), locationsGroup, minUsers, maxUsers)
 			emitter.init();
+			emitters.push(emitter);
 		}
-		console.log(locationsGroup.mesh)
-
-
 	}
 
 	var tick = function(dt) {
