@@ -5,7 +5,7 @@ var Emitter = function(lat, lon, numUsers, locationsGroup) {
   var particlesPerSecond = 100;
   var lat = lat;
   var lon = lon;
-  var numUsers = randomRange(100, 200);
+  var numUsers = randomRange(100, 1000);
   var color;
 
   var velMultiplier = map(numUsers, 0, 1000, 1, 10) * .05;

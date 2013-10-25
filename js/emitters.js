@@ -18,8 +18,6 @@ var Emitters = function(scene) {
 			var emitter = new Emitter(locationData[i], locationData[i + 1], locationData[i + 2], locationsGroup)
 			emitters.push(emitter);
 			emitter.init();
-			//yo
-
 		}
 
 		scene.add(locationsGroup.mesh);
