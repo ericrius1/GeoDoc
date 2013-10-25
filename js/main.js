@@ -3,7 +3,7 @@ var Main = function() {
 	var locationData;
 	var xhr;
 	var newDataCurrentIndex = 0;
-	var newItemsPerRequest = 3; //3 = 1 new item!
+	var newItemsPerRequest = 6; //3 = 1 new item!
 	var world;
 	var song;
 
@@ -15,10 +15,10 @@ var Main = function() {
 	var newData;
 
 	setUpAudio();
-	setTimeout(beginDisplay, 1300);
+	setTimeout(beginDisplay, 13000);
 
 	xhr = new XMLHttpRequest();
-	xhr.open('GET', 'assets/newLocData.json', true);
+	xhr.open('GET', 'assets/localLocData.json', true);
 	xhr.onreadystatechange = function(e) {
 		if (xhr.readyState === 4) {
 			if (xhr.status === 200) {
@@ -50,7 +50,9 @@ var Main = function() {
 
 
 	function setNumUsers(data) {
-		for (var i = 0; i < data.length; i += 3) {
+		//hack for presentation for first one
+		data[2] = 2000;
+		for (var i = 3; i < data.length; i += 3) {
 			data[i + 2] = randomRange(1, 2000);
 		}
 

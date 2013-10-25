@@ -24,7 +24,7 @@ var World = function() {
 		var onRenderFcts = [];
 		scene = new THREE.Scene();
 		var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 10000);
-		camera.position.z = 2;
+		camera.position.z = 1.5;
 
 
 
@@ -32,7 +32,7 @@ var World = function() {
 
 		controls = new THREE.OrbitControls(camera);
 		controls.autoRotate = true;
-		controls.autoRotateSpeed = -0.4;
+		controls.autoRotateSpeed = -0.77;
 
 
 		setUpLights(scene);

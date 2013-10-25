@@ -26,7 +26,7 @@ var Emitter = function(lat, lon, initialNumUsers, locationsGroup, minUsers, maxU
   //Raise this to increase velocity ****************
   var velMultFactor = 40;
   var surfFactor = 0.5;
-  var sizeStart = .1;
+  var sizeStart = .07;
 
 
   var locationsGroup = locationsGroup;
@@ -52,7 +52,8 @@ var Emitter = function(lat, lon, initialNumUsers, locationsGroup, minUsers, maxU
       particlesPerSecond: particlesPerSecond,
 
       opacityStart: 1.0,
-      opacityEnd: 0.2
+      opacityEnd: 0.4
+
     });
 
     locationsGroup.addEmitter(myEmitter);
@@ -79,12 +80,12 @@ var Emitter = function(lat, lon, initialNumUsers, locationsGroup, minUsers, maxU
   this.recalculate = function() {
     this.mapColor(this.numUsers);
 
-    var velMultiplier = map(this.numUsers, minUsers, maxUsers, 0, velMultFactor) * .005;
+    var velMultiplier = map(this.numUsers, minUsers, maxUsers, 0, velMultFactor) * .01;
     velocity.x = xPos * velMultiplier;
     velocity.y = yPos * velMultiplier;
     velocity.z = zPos * velMultiplier;
 
-    var accelFactor = map(this.numUsers, minUsers, maxUsers, 0, .1);
+    var accelFactor = map(this.numUsers, minUsers, maxUsers, 0, .009);
     accelSpread.x = accelFactor
     accelSpread.y = accelFactor
     accelSpread.z = accelFactor

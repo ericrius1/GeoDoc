@@ -13,7 +13,7 @@ var Emitters = function(scene, lossFrequency) {
 
 	var locationGroups = [];
 	var locationsGroup;
-	var maxAge = 5;
+	var maxAge = 4;
 	var updateFrequency = 0.2;
 	var lossFrequency = lossFrequency;
 
