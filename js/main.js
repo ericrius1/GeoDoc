@@ -5,7 +5,7 @@ var Main = function() {
 	var newItemsPerRequest = 3; //3 = 1 new item!
 	var world;
 
-	var updateInterval = 5000;
+	var updateInterval = 500;
 
 	var newData;
 
@@ -56,8 +56,8 @@ var Main = function() {
 
 	function setUpAudio(){
 		var audioElement = document.createElement('audio');
-		audioElement.setAttribute('src', 'assets/GoldIn.mp3');
-		//audioElement.play();
+		audioElement.setAttribute('src', 'assets/odyssey.mp3');
+		audioElement.play();
 	}
 
 
