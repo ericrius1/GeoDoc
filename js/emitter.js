@@ -7,7 +7,8 @@ var Emitter = function(lat, lon, numUsers, locationsGroup, minUsers, maxUsers) {
   var lon = lon;
   var color;
   var velocity = {};
-  var numUsers = numUsers;
+
+  this.numUsers = numUsers;
 
   var minUsers = minUsers;
   var maxUsers = maxUsers;
@@ -64,8 +65,8 @@ var Emitter = function(lat, lon, numUsers, locationsGroup, minUsers, maxUsers) {
 
   }
 
-  var update = function(numUsers) {
-
+  var update = function(newNumUsers) {
+    numUsers = newNumUsers;
     var velMultiplier = map(numUsers, minUsers, maxUsers, 1, 20) * .05;
     velocity.x = xPos * velMultiplier;
     velocity.y = yPos * velMultiplier;

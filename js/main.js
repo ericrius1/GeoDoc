@@ -14,8 +14,7 @@ var Main = function() {
 	xhr.onreadystatechange = function(e) {
 		if (xhr.readyState === 4) {
 			if (xhr.status === 200) {
-				var data = JSON.parse(xhr.responseText);
-				locationData = data;
+				var locationData = JSON.parse(xhr.responseText);
 				world = new World(locationData);
 				world.init();
 				world.setUpEmitters();
@@ -38,10 +37,18 @@ var Main = function() {
 	xhr2.onreadystatechange = function(e){
 		if(xhr2.readyState === 4) {
 			if(xhr2.status === 200){
-				newData = JSON.parse(xhr2.responseText);
-				//newData = _.shuffle(newData);
+				newData = increaseNumUsers(JSON.parse(xhr2.responseText));
+				
 			}
 		}
+	}
+
+	function increaseNumUsers(data){
+		for(var i = 0; i < data.length; i+=3 ){
+			data[i+2] = randomRange(1, 1000);
+		}
+
+		return data;
 	}
 
 

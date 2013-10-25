@@ -170,11 +170,11 @@ var World = function(locationData) {
 
 	var setUpEmitters = function() {
 		emitters = new Emitters(scene);
-		emitters.add(locationData);
+		emitters.updateData(locationData);
 	}
 
 	var updateData = function(newLocationData){
-		emitters.add(newLocationData);	
+		emitters.updateData(newLocationData);	
 
 	}
 
