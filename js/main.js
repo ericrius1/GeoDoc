@@ -2,7 +2,7 @@ var Main = function() {
 	var locationData;
 	var xhr;
 	var newDataCurrentIndex = 0;
-	var newItemsPerRequest = 10;
+	var newItemsPerRequest = 9;
 	var world;
 
 	var newData;
@@ -28,7 +28,8 @@ var Main = function() {
 
 	var getUpdatedData = function(){
 		//ok we're getting new data... now update globe with it and then increment so next time we get new points
-		world.updateData(newData.slice(newDataCurrentIndex, newItemsPerRequest));
+		var tempData = newData.slice(newDataCurrentIndex, newDataCurrentIndex + newItemsPerRequest);
+		world.updateData(tempData);
 		newDataCurrentIndex += newItemsPerRequest;
 
 	}
@@ -38,7 +39,7 @@ var Main = function() {
 		if(xhr2.readyState === 4) {
 			if(xhr2.status === 200){
 				newData = JSON.parse(xhr2.responseText);
-				newData = _.shuffle(newData);
+				//newData = _.shuffle(newData);
 			}
 		}
 	}

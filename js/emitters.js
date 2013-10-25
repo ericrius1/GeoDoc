@@ -24,25 +24,29 @@ var Emitters = function(scene) {
 
 	var add = function(locationData) {
 		for (var i = 0; i < locationData.length; i += 3) {
+			console.log(locationsGroup)
 			var emitter = new Emitter(locationData[i], locationData[i + 1], randomRange(minUsers, maxUsers), locationsGroup, minUsers, maxUsers)
 			emitters.push(emitter);
 			emitter.init();
 		}
+		console.log(locationsGroup.mesh)
+
+
 	}
 
 	var tick = function(dt) {
 		locationsGroup.tick(dt);
 		count++;
-		if (count % 100 === 0) {
-			for (var i = 0; i < emitters.length; i++) {
-				emitters[i].update(randomRange(minUsers, maxUsers));
-			}
+		// if (count % 100 === 0) {
+		// 	for (var i = 0; i < emitters.length; i++) {
+		// 		emitters[i].update(randomRange(minUsers, maxUsers));
+		// 	}
 
-		}
+		// }
 	}
 
 	this.init = init;
 	this.tick = tick;
-	this.add = add;
+	this.add = add; 
 
 }

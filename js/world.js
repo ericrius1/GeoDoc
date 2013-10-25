@@ -174,7 +174,6 @@ var World = function(locationData) {
 	}
 
 	var updateData = function(newLocationData){
-		console.log('update')
 		emitters.add(newLocationData);
 
 	}
