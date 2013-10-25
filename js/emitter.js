@@ -37,7 +37,7 @@ var Emitter = function(lat, lon, initialNumUsers, locationsGroup, minUsers, maxU
 
   var init = function() {
 
-    recalculate();
+    this.recalculate();
 
     emitter = new ShaderParticleEmitter({
       position: new THREE.Vector3(xPos * surfFactor, yPos * surfFactor, zPos * surfFactor),
@@ -56,9 +56,9 @@ var Emitter = function(lat, lon, initialNumUsers, locationsGroup, minUsers, maxU
   }
 
   var update = function(newNumUsers) {
-    numUsers = newNumUsers;
+    this.numUsers = newNumUsers;
 
-    recalculate();
+    this.recalculate();
 
     emitter.setOption('velocity', new THREE.Vector3(velocity.x, velocity.y, velocity.z));
     emitter.setOption('accelerationSpread', new THREE.Vector3(accelSpread.x, accelSpread.y, accelSpread.z));
@@ -66,8 +66,8 @@ var Emitter = function(lat, lon, initialNumUsers, locationsGroup, minUsers, maxU
     emitter.setOption('colorEnd', currentColor);
   }
 
-  var recalculate = function() {
-    mapColor(this.numUsers);
+  this.recalculate = function() {
+    this.mapColor(this.numUsers);
 
     var velMultiplier = map(this.numUsers, minUsers, maxUsers, 0, velMultFactor) * .05;
     velocity.x = xPos * velMultiplier;
@@ -81,7 +81,7 @@ var Emitter = function(lat, lon, initialNumUsers, locationsGroup, minUsers, maxU
 
   }
 
-  var mapColor = function(numUsers) {
+  this.mapColor = function() {
     // h,s,l ranges are in 0.0 - 1.0
     var h = map(this.numUsers, minUsers, maxUsers, 0, 1)
     currentColor.setHSL(h, 0.5, 0.5);
