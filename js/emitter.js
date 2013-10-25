@@ -6,7 +6,6 @@ var Emitter = function(lat, lon, numUsers, locationsGroup) {
   var lat = lat;
   var lon = lon;
   var numUsers = randomRange(100, 1000)
-  console.log('numUsers', numUsers)
   var color;
 
   var velMultiplier = numUsers / 1000;
@@ -42,7 +41,7 @@ var Emitter = function(lat, lon, numUsers, locationsGroup) {
 
       colorStart: color,
       colorEnd: color,
-      size: .2,
+      size: .1,
       sizeEnd: .01,
 
       opacityStart: 1,
@@ -63,7 +62,9 @@ var Emitter = function(lat, lon, numUsers, locationsGroup) {
   var mapColor = function(x) {
     var c = new THREE.Color();
     // h,s,l ranges are in 0.0 - 1.0
-    c.setHSL(x,  .5, .5);
+    var h = map(numUsers, 0, 1000, 1, 0)
+    console.log(h)
+    c.setHSL(h, .5, .5);
     return c;
   }
   this.init = init;
