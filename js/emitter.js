@@ -82,7 +82,6 @@ var Emitter = function(lat, lon, numUsers, locationsGroup, minUsers, maxUsers) {
     var c = new THREE.Color();
     // h,s,l ranges are in 0.0 - 1.0
     var h = map(numUsers, minUsers, maxUsers, 0, 1)
-    console.log(h)
     c.setHSL(h, .7, .3  );
     return c;
   }

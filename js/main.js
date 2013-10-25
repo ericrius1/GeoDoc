@@ -1,6 +1,11 @@
 var Main = function() {
 	var locationData;
 	var xhr;
+	var newDataCurrentIndex = 0;
+	var newItemsPerRequest = 10;
+	var world;
+
+	var newData;
 
 	xhr = new XMLHttpRequest();
 	xhr2 = new XMLHttpRequest();
@@ -11,7 +16,7 @@ var Main = function() {
 			if (xhr.status === 200) {
 				var data = JSON.parse(xhr.responseText);
 				locationData = data;
-				var world = new World(locationData);
+				world = new World(locationData);
 				world.init();
 				world.setUpEmitters();
 			}
@@ -20,11 +25,20 @@ var Main = function() {
 	xhr.send(null);
 	xhr2.send(null);
 
+
+	var getUpdatedData = function(){
+		//ok we're getting new data... now update globe with it and then increment so next time we get new points
+		world.updateData(newData.slice(newDataCurrentIndex, newItemsPerRequest));
+		newDataCurrentIndex += newItemsPerRequest;
+
+	}
+    setInterval(getUpdatedData, 1000);
+
 	xhr2.onreadystatechange = function(e){
-		if(xhr.readyState === 4) {
-			if(xhr.status === 200){
-				var newData = JSON.parse(xhr.responseText);
-				world.updateData(newData);
+		if(xhr2.readyState === 4) {
+			if(xhr2.status === 200){
+				newData = JSON.parse(xhr2.responseText);
+				newData = _.shuffle(newData);
 			}
 		}
 	}

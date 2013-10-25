@@ -173,7 +173,14 @@ var World = function(locationData) {
 		emitters.init(locationData);
 	}
 
+	var updateData = function(newLocationData){
+		console.log('update')
+		emitters.add(newLocationData);
+
+	}
+
 	this.init = init;
 	this.setUpEmitters = setUpEmitters;
+	this.updateData = updateData;
 
 }
