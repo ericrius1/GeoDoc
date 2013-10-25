@@ -5,11 +5,11 @@ var World = function() {
 		lat = 0,
 		phi = 0,
 		theta = 0;
+	var myEmitters;
 	var init = function() {
 
 		var controls;
 
-		var emitter;
 		var dt = 0.016;
 
 		var renderer = new THREE.WebGLRenderer({
@@ -23,6 +23,7 @@ var World = function() {
 		scene = new THREE.Scene();
 		var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 10000);
 		camera.position.z = 2;
+
 
 
 		windowResize(renderer, camera);
@@ -98,7 +99,9 @@ var World = function() {
 		//////////////////////////////////////////////////////////////////////////////////
 		onRenderFcts.push(function() {
 			renderer.render(scene, camera);
-			emitters.tick(dt);
+			if(myEmitters){
+				myEmitters.tick(dt)
+			}
 		})
 
 		//////////////////////////////////////////////////////////////////////////////////
@@ -126,11 +129,11 @@ var World = function() {
 
 
 	var setUpEmitters = function() {
-		emitters = new Emitters(scene);
+		myEmitters = new Emitters(scene);
 	}
 
 	var updateData = function(newLocationData) {
-		emitters.updateData(newLocationData);
+		myEmitters.updateData(newLocationData);
 
 	}
 

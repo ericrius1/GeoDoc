@@ -3,7 +3,7 @@ var Emitter = function(lat, lon, initialNumUsers, locationsGroup, minUsers, maxU
   this.numUsers = initialNumUsers;
 
 
-  var emitter;
+  var myEmitter;
   var particlesPerSecond = 200;
   var lat = lat;
   var lon = lon;
@@ -39,7 +39,7 @@ var Emitter = function(lat, lon, initialNumUsers, locationsGroup, minUsers, maxU
 
     this.recalculate();
 
-    emitter = new ShaderParticleEmitter({
+    myEmitter = new ShaderParticleEmitter({
       position: new THREE.Vector3(xPos * surfFactor, yPos * surfFactor, zPos * surfFactor),
       velocity: velocity,
 
@@ -51,7 +51,7 @@ var Emitter = function(lat, lon, initialNumUsers, locationsGroup, minUsers, maxU
       particlesPerSecond: particlesPerSecond
     });
 
-    locationsGroup.addEmitter(emitter);
+    locationsGroup.addEmitter(myEmitter);
 
   }
 
@@ -60,10 +60,10 @@ var Emitter = function(lat, lon, initialNumUsers, locationsGroup, minUsers, maxU
 
     this.recalculate();
 
-    emitter.setOption('velocity', new THREE.Vector3(velocity.x, velocity.y, velocity.z));
-    emitter.setOption('accelerationSpread', new THREE.Vector3(accelSpread.x, accelSpread.y, accelSpread.z));
-    emitter.setOption('colorStart', currentColor);
-    emitter.setOption('colorEnd', currentColor);
+    myEmitter.setOption('velocity', new THREE.Vector3(velocity.x, velocity.y, velocity.z));
+    myEmitter.setOption('accelerationSpread', new THREE.Vector3(accelSpread.x, accelSpread.y, accelSpread.z));
+    myEmitter.setOption('colorStart', currentColor);
+    myEmitter.setOption('colorEnd', currentColor);
   }
 
   this.recalculate = function() {
@@ -86,7 +86,12 @@ var Emitter = function(lat, lon, initialNumUsers, locationsGroup, minUsers, maxU
     var h = map(this.numUsers, minUsers, maxUsers, 0, 1)
     currentColor.setHSL(h, 0.5, 0.5);
   }
+
+  var disableMe = function(){
+    myEmitter.disable();
+  }
   this.init = init;
   this.update = update;
+  this.disableMe = disableMe;
 
 }

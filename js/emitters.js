@@ -1,7 +1,6 @@
 var Emitters = function(scene) {
 	var scene = scene;
 
-	var emitter;
 	var emitters = [];
 
 	var locationData = [];
@@ -15,15 +14,25 @@ var Emitters = function(scene) {
 	var locationsGroup;
 	var maxAge = 5;
 
+	var lossFrequency = 0.0;
+	var updateFrequency = 1.0;
+
 
 	var updateData = function(newLocationData) {
 
-		// pretend we've gotten new numUser info for previous locations
+		// pretend we've gotten new numUser info for previous locations. Some will be updated. Some will be lost
 		for (var i = 0; i < emitters.length; i++) {
+
 			var emitter = emitters[i];
-			var numUsers = emitter.numUsers;
-			var newNumUsers = randomRange(Math.max(minUsers, numUsers - 500), Math.min(numUsers + 500, maxUsers));
-			emitter.update(newNumUsers)
+			if(Math.random() < lossFrequency){
+				emitter.disableMe();
+			}
+			else if(Math.random() < updateFrequency){
+				var numUsers = emitter.numUsers;
+				var newNumUsers = randomRange(Math.max(minUsers, numUsers - 500), Math.min(numUsers + 500, maxUsers));
+				emitter.update(newNumUsers)
+				
+			}
 		}
 
 
@@ -41,8 +50,6 @@ var Emitters = function(scene) {
 			emitter.init();
 			emitters.push(emitter);
 		}
-
-
 
 		//just adds new Data
 		scene.add(locationsGroup.mesh)

@@ -13,7 +13,7 @@ var Main = function() {
 	var newData;
 
 	setUpAudio();
-	setTimeout(beginDisplay, 13000);
+	setTimeout(beginDisplay, 1300);
 
 	xhr = new XMLHttpRequest();
 	xhr.open('GET', 'assets/newLocData.json', true);
@@ -57,7 +57,7 @@ var Main = function() {
 	function setUpAudio(){
 		song = document.createElement('audio');
 		song.setAttribute('src', 'assets/odyssey.mp3');
-		song.play();
+		//song.play();
 
 	}
 
