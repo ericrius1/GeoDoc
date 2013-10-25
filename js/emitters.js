@@ -13,7 +13,7 @@ var Emitters = function(scene) {
 
 	var locationGroups = [];
 	var locationsGroup;
-	var maxAge = 1.3;
+	var maxAge = 5;
 
 
 	var updateData = function(newLocationData) {

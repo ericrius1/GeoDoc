@@ -21,7 +21,8 @@ var Emitter = function(lat, lon, numUsers, locationsGroup, minUsers, maxUsers) {
   var zPos = Math.sin(phi) * Math.sin(theta);
 
   var velMultiplier;
-  var velMultFactor = 10;
+  //Raise this to increase velocity
+  var velMultFactor = 20;
 
 
   var surfFactor = 0.5;
@@ -43,11 +44,10 @@ var Emitter = function(lat, lon, numUsers, locationsGroup, minUsers, maxUsers) {
       position: new THREE.Vector3(xPos * surfFactor, yPos * surfFactor, zPos * surfFactor),
 
 
-      acceleration: new THREE.Vector3(0, randomRange(-0.1, 0), 0),
-      accelerationSpread: new THREE.Vector3(.1, 0.01, .1),
 
 
       colorStart: color,
+      colorStartSpread: new THREE.Vector3(.2, .2, .2),
       colorEnd: color,
       sizeStart: sizeStart,
       sizeEnd: sizeStart,
@@ -55,6 +55,10 @@ var Emitter = function(lat, lon, numUsers, locationsGroup, minUsers, maxUsers) {
       opacityStart: 0.3,
       opacityMidde: 0.7,
       opacityEnd: 0.5,
+
+      particleMass: 30,
+      planetMass: 100,
+      planetPosition: new THREE.Vector3(0, 0, 0),
 
 
       particlesPerSecond: particlesPerSecond
@@ -75,8 +79,8 @@ var Emitter = function(lat, lon, numUsers, locationsGroup, minUsers, maxUsers) {
     color = mapColor(numUsers);
 
     emitter.setOption('velocity', new THREE.Vector3(velocity.x, velocity.y, velocity.z));
-    emitter.setOption('colorStart',color);
-    emitter.setOption('colorEnd',color);
+    emitter.setOption('colorStart', color);
+    emitter.setOption('colorEnd', color);
   }
 
   var mapColor = function(numUsers) {
