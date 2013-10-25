@@ -52,19 +52,27 @@ var Emitter = function(lat, lon, initialNumUsers, locationsGroup, minUsers, maxU
       particlesPerSecond: particlesPerSecond
     });
 
+
+
     locationsGroup.addEmitter(myEmitter);
+
+
+    myEmitter.setOption('velocity', new THREE.Vector3(velocity.x, velocity.y, velocity.z));
+    myEmitter.setOption('accelerationSpread', new THREE.Vector3(accelSpread.x, accelSpread.y, accelSpread.z));
+    myEmitter.setOption('colorStart', currentColor);
+    myEmitter.setOption('colorEnd', currentColor);
 
   }
 
   var update = function(newNumUsers) {
-    // this.numUsers = newNumUsers;
+    this.numUsers = newNumUsers || this.numUsers;
 
-    // this.recalculate();
+    this.recalculate();
 
-    // myEmitter.setOption('velocity', new THREE.Vector3(velocity.x, velocity.y, velocity.z));
-    // myEmitter.setOption('accelerationSpread', new THREE.Vector3(accelSpread.x, accelSpread.y, accelSpread.z));
-    // myEmitter.setOption('colorStart', currentColor);
-    // myEmitter.setOption('colorEnd', currentColor);
+    myEmitter.setOption('velocity', new THREE.Vector3(velocity.x, velocity.y, velocity.z));
+    myEmitter.setOption('accelerationSpread', new THREE.Vector3(accelSpread.x, accelSpread.y, accelSpread.z));
+    myEmitter.setOption('colorStart', currentColor);
+    myEmitter.setOption('colorEnd', currentColor);
   }
 
   this.recalculate = function() {
@@ -88,7 +96,7 @@ var Emitter = function(lat, lon, initialNumUsers, locationsGroup, minUsers, maxU
     currentColor.setHSL(h, 0.5, 0.5);
   }
 
-  var disableMe = function(){
+  var disableMe = function() {
     myEmitter.disable();
   }
   this.init = init;
