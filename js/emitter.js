@@ -2,12 +2,12 @@ var Emitter = function(lat, lon, numUsers, locationsGroup) {
 
 
   var emitter;
-  var particlesPerSecond = 10;
+  var particlesPerSecond = 100;
   var lat = lat;
   var lon = lon;
   var numUsers = randomRange(100, 1000);
   var color;
-  var size = 0.013;
+  var size = 0.13;
   var velocity = {};
 
   var phi = (90 - lat) * Math.PI / 180;
