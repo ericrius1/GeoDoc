@@ -52,11 +52,9 @@ var Emitter = function(lat, lon, initialNumUsers, locationsGroup, minUsers, maxU
       particlesPerSecond: particlesPerSecond
     });
 
-
-
     locationsGroup.addEmitter(myEmitter);
 
-
+    //dispals right away
     myEmitter.setOption('velocity', new THREE.Vector3(velocity.x, velocity.y, velocity.z));
     myEmitter.setOption('accelerationSpread', new THREE.Vector3(accelSpread.x, accelSpread.y, accelSpread.z));
     myEmitter.setOption('colorStart', currentColor);
