@@ -10,6 +10,8 @@ var Emitters = function(scene, lossFrequency) {
 	var minUsers = 1;
 	var maxUsers = 2000;
 
+  var changeRate = 500;
+
 
 	var locationGroups = [];
 	var locationsGroup;
@@ -29,7 +31,7 @@ var Emitters = function(scene, lossFrequency) {
 			}
 			else if(Math.random() < updateFrequency){
 				var numUsers = emitter.numUsers;
-				var newNumUsers = randomRange(Math.max(minUsers, numUsers - 200), Math.min(numUsers + 200, maxUsers));
+				var newNumUsers = randomRange(Math.max(minUsers, numUsers - changeRate), Math.min(numUsers + changeRate, maxUsers));
 				emitter.update(newNumUsers)
 				
 			}
