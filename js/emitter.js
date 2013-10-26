@@ -85,7 +85,7 @@ var Emitter = function(lat, lon, initialNumUsers, locationsGroup, minUsers, maxU
     velocity.y = yPos * velMultiplier;
     velocity.z = zPos * velMultiplier;
 
-    var accelFactor = map(this.numUsers, minUsers, maxUsers, 0, .009);
+    var accelFactor = map(this.numUsers, minUsers, maxUsers, 0, .07);
     accelSpread.x = accelFactor
     accelSpread.y = accelFactor
     accelSpread.z = accelFactor
